@@ -28,15 +28,3 @@
 
 
 
-rm ./csharp/Accounting/.git -Rf
-rm -Rf ./csharp/Api/.git
-rm -Rf ./jojomobil/modules/views_carousel/.git
-rm -Rf ./jojomobil/modules/repair/.git
-rm -Rf ./drupal/modules/menu/.git
-rm -Rf ./drupal/modules/profile/.git
-rm -Rf ./drupal/modules/version/.git
-rm -Rf ./drupal/modules/youtube/.git
-rm -Rf ./drupal/modules/dbbackup/.git
-rm -Rf ./drupal/modules/articles/.git
-rm -Rf ./drupal/modules/animate/.git
-rm -Rf ./drupal/modules/actioner/.git
