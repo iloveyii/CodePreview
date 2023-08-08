@@ -1,0 +1,66 @@
+﻿
+@using Accounting.Client.Components
+@using System.Globalization
+@using Accounting.Shared
+@using Accounting.Client.Pages
+@using Accounting.Client.Components.Earnings
+@inject HttpClient Http
+
+<div id="earnings-table" class="card">
+    <div class="card-header">
+        Earnings
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Subject</th>
+                        <th>Amount</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (earnings == null)
+                    {
+                        <tr><td><em>Loading...</em></td></tr>
+                    }
+                    else
+                    {
+                        @foreach (var earning in earnings)
+                        {
+                            <tr>
+                                <td>@earning.Date</td>
+                                <td>@earning.Category</td>
+                                <td>@earning.Subject</td>
+                                <td>@earning.Amount.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))</td>
+                                <td><button type="button" class="btn btn-danger btn-sm" @onclick="()=>OpenDeleteDialog(earning)">Delete</button></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    
+    </div>
+</div>
+
+
+
+@code {
+
+    [Parameter]
+    public Earning[] earnings { get; set; }
+    [Parameter]
+    public EventCallback<Earning> OnOpenDeleteDialog { get; set; }
+
+    private void OpenDeleteDialog(Earning earning)
+    {
+        OnOpenDeleteDialog.InvokeAsync(earning);
+    }
+
+   
+}

@@ -1,0 +1,8 @@
+font_size:
+  xs: Extra Small
+  sm: Small
+  md: Medium
+  lg: Large
+selected_font_size: xs
+selected_module: site_version
+db_version: v1.2.3.4

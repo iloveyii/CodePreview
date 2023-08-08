@@ -1,0 +1,52 @@
+﻿{
+    "models": {
+        "Car-A": {
+            "Name": "M5 2008 Model",
+            "Image": "Car-A.png",
+            "BaseRate": 3.30,
+            "Passengers": 4
+        },
+        "Car-B": {
+            "Name": "Bolt EV 2006 Model",
+            "Image": "Car-B.png",
+            "BaseRate": 4.30,
+            "Passengers": 4
+        },
+        "Car-C": {
+            "Name": "E Class 2010 Model",
+            "Image": "Car-C.png",
+            "BaseRate": 5.30,
+            "Passengers": 4
+        }
+    },
+    "regions": {
+        "The-city-of-London": {
+            "Car-A": 1.5,
+            "Car-B": 2.5,
+            "Car-C": 3.0
+        },
+        "Westminster": {
+            "Car-A": 1.75,
+            "Car-B": 2.25,
+            "Car-C": 3.50
+        },
+        "West-end-of-london": {
+            "Car-A": 1.25,
+            "Car-B": 2.5,
+            "Car-C": 3.10
+        },
+        "South-Bank": {
+            "Car-A": 1.5,
+            "Car-B": 2.25,
+            "Car-C": 3.20
+        },
+        "White-Region": {
+            "Car-A": 1.0,
+            "Car-B": 2.0,
+            "Car-C": 2.0
+        }
+
+    }
+}
+
+

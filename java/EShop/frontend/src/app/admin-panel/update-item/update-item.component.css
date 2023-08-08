@@ -1,0 +1,61 @@
+button {
+  min-width: 0;
+  padding: 0 0 0 0;
+  margin: 0 0 0 0;
+  text-align: left;
+}
+
+.edit-button {
+  display: block;
+}
+
+.edit-item-form-input {
+  margin-top: 1rem;
+  width: 80%;
+  height: 80%;
+}
+
+:host ::ng-deep .edit-item-form-input .mat-form-field-wrapper {
+  padding: 0;
+}
+
+:host
+  ::ng-deep
+  .edit-item-form-input
+  .mat-form-field-appearance-outline
+  .mat-form-field-infix {
+  padding: 0.5rem;
+}
+
+.edit-cancel-button {
+  margin-left: 3rem;
+}
+
+.edit-submit-button {
+  margin-left: 1rem;
+}
+
+.item-stock-preview-on {
+  display: contents;
+}
+
+.item-stock-preview-off {
+  display: none;
+}
+
+.item-stock-edit-on {
+  display: contents;
+}
+
+.item-stock-edit-off {
+  display: none;
+}
+
+.item-stock-edit-error-on {
+  text-align: left;
+  display: block;
+}
+
+.item-stock-edit-error-off {
+  display: none;
+}

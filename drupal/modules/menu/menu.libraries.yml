@@ -1,0 +1,17 @@
+menu:
+  version: 2.0
+  css:
+    component:
+      css/navbar.css: {}
+      https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.9.1/font/bootstrap-icons.min.css: {}
+  js:
+    js/bootstrap.bundle.min.js: {}
+    js/offcanvas.js: {}
+    js/menu.js: {}
+  dependencies:
+    - core/drupal
+submenu:
+  version: 2.0
+  css:
+    component:
+      css/submenu.css: {}

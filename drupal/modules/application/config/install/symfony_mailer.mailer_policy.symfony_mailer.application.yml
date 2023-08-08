@@ -1,0 +1,12 @@
+langcode: en
+status: true
+dependencies: {  }
+id: symfony_mailer.application
+configuration:
+  email_body:
+    content:
+      value: |-
+        <p>This is a confirmation email from <a href="[site:url]">[site:name]</a>.</p>
+      format: email_html
+  email_subject:
+    value: 'Confirmation email from [site:name]'

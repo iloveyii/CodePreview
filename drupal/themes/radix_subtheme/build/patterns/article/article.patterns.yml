@@ -1,0 +1,21 @@
+## File: THEME/patterns/card/card.patterns.yml
+article:
+  label: 'Article'
+  description: A article
+  fields:
+    title:
+      type: text
+      label: Title
+      description: The title of the Article
+      preview: 'This the title of the article'
+    text:
+      type: text
+      label: Text
+      description: This is the body of the article
+      preview: 'Describe your articile with multiple sub heading and other text editing features'
+  libraries:
+    -
+      card:
+        css:
+          component:
+            css/article.css: {}

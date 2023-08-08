@@ -1,0 +1,5 @@
+panel:
+  version: 1.0
+  css:
+    theme:
+      css/dbbackup.css: {}

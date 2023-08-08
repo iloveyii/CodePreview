@@ -1,0 +1,6 @@
+name: Animate
+type: module
+version: v1.0
+description: Different CSS & JS based animations
+package: 'Custom'
+core_version_requirement: ^8.8 || ^9

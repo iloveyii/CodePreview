@@ -1,0 +1,5 @@
+services:
+  menu.dynamic_routes:
+    class: 'Drupal\menu\Routing\DynamicRoutesAlter'
+    tags:
+      - { name: event_subscriber }

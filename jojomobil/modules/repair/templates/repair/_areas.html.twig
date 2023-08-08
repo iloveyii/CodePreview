@@ -1,0 +1,34 @@
+{# <!-- Services - Main Areas --> #}
+<div class="container services mt-3 mt-xl-5">
+  <div class="row">
+    {% for area in list_areas %}
+      {% if area.icon_bootstrap is empty %}
+        {% set bi_icon = "bi bi-tools" %}
+      {% else %}
+        {% set bi_icon = area.icon_bootstrap %}
+      {% endif %}
+      <div class="col-md-4">
+        <div class="flip-card">
+          <div class="flip-card-inner">
+            <div class="flip-card-front"
+              style="background-image: url('{{ area.icon }}');">
+              <i class="{{ bi_icon }}"></i>
+              <h2>
+                {{ area.title }}
+              </h2>
+            </div>
+            <div class="flip-card-back">
+              <h1>
+                {{ area.title }}
+              </h1>
+              {{ area.description }}
+              <a href="#" class="btn btn-primary rounded-pill px-3">
+                Start a repair
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>

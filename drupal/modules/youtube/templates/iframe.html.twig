@@ -1,0 +1,7 @@
+{{ attach_library('youtube/youtube') }}
+
+<div class="youtube">
+  <iframe src='{{ src }}' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen>
+  {{ 'Your browser does not support iframes, but you can visit <a href=":url">@text</a>'|t({ ':url': src, '@text': text }) }}
+  </iframe>
+</div>

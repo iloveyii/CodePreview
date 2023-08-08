@@ -1,0 +1,12 @@
+.panel .m-0, .m-0 {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+.panel .placeholder {
+    display: inline-block;
+    margin-left: 1rem;
+}
+.panel .placeholder a.button  {
+    background: #0071b8 !important;
+    padding: 0.25rem 2rem !important;
+}

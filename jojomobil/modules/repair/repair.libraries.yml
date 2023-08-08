@@ -1,0 +1,42 @@
+repair.styles:
+  version: 1.x
+  css:
+    component:
+      css/repair.css: {}
+
+repair.options:
+  js:
+    js/options.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+    - core/jquery.once
+    - repair/repair.styles
+
+repair.submit:
+  js:
+    js/submit.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+repair.clients:
+  js:
+    js/clients.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+repair.reviews:
+  js:
+    js/reviews.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery
+
+repair.search.clear:
+  js:
+    js/search.js: {}
+  dependencies:
+    - core/drupal
+    - core/jquery

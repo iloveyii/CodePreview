@@ -1,0 +1,49 @@
+{#
+/**
+ * @file
+ * Template for a Nav component.
+ *
+ * Available config:
+ * - items: An array of menu links.
+ */
+#}
+{% import '@menu/menulinks.twig' as menus %}
+{# Get menu tree #}
+{% set tree = items.menu_tree %}
+
+{% if (tree|length) > 0 %}
+  <div class="nav-scroller bg-body shadow-sm">
+    <nav class="nav nav-underline" aria-label="Secondary navigation">
+      <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+      <a class="nav-link" href="#">
+        Friends
+        <span class="badge bg-light text-dark rounded-pill align-text-bottom">
+          27
+        </span>
+      </a>
+      {% for menu_item in tree %}
+        {# CASE : 1 - simple links level 0 #}
+        <a class="nav-link" href="{{ menu_item.url }}">{{ menu_item.text }}</a>
+      {% endfor %}
+    </nav>
+  </div>
+{% endif %}
+
+{# <div class="nav-scroller bg-body shadow-sm">
+  <nav class="nav nav-underline" aria-label="Secondary navigation">
+    <a class="nav-link active" aria-current="page" href="#">Dashboard</a>
+    <a class="nav-link" href="#">
+      Friends
+      <span class="badge bg-light text-dark rounded-pill align-text-bottom">
+        27
+      </span>
+    </a>
+    <a class="nav-link" href="#">Explore</a>
+    <a class="nav-link" href="#">Suggestions</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+    <a class="nav-link" href="#">Link</a>
+  </nav>
+</div> #}

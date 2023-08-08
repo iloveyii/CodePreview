@@ -1,0 +1,24 @@
+services:
+  repair.commands.import:
+    class: \Drupal\repair\Commands\ImportCommand
+    tags:
+      - { name: drush.command }
+    arguments: ["@entity_type.manager", "@logger.factory", "@settings"]
+
+  repair.commands.media:
+    class: \Drupal\repair\Commands\MediaCommand
+    tags:
+      - { name: drush.command }
+    arguments: ["@entity_type.manager", "@file_system", "@settings"]
+
+  repair.commands.tax:
+    class: \Drupal\repair\Commands\TaxCommand
+    tags:
+      - { name: drush.command }
+    arguments: ["@entity_type.manager", "@file_system", "@settings"]
+
+  repair.commands.service:
+    class: \Drupal\repair\Commands\ServiceCommand
+    tags:
+      - { name: drush.command }
+    arguments: ["@entity_type.manager", "@file_system", "@settings"]

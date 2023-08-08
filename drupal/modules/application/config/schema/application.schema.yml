@@ -1,0 +1,25 @@
+application.settings:
+  type: config_object
+  label: 'Application content type settings'
+  mapping:
+    allowed_types:
+      type: sequence
+      label: 'Content Types, application Form can display on'
+      sequence:
+        type: string
+        label: 'Content Types'
+    can_review_types:
+      type: sequence
+      label: 'Content Types, application forms that can be reviewed'
+      sequence:
+        type: string
+        label: 'Content Types'
+    email:
+      type: string
+      label: 'Support email'
+    reviewers_reviews_count:
+      type: string
+      label: 'Number of reviews that can abe assigned to a reviewer - vertical'
+    application_reviewers_count:
+      type: string
+      label: 'Number of reviewers that can abe assigned to an application - horizontal'

@@ -1,0 +1,7 @@
+name: Views Carousel
+type: module
+description: Shows a carousel based on views
+package: 'Custom'
+core_version_requirement: ^8.8 || ^9
+dependencies:
+  - views

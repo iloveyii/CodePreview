@@ -1,0 +1,16 @@
+<div class="sections">
+  <ul class="toc list-group list-group-flush">
+    {% for section in sections.field_sections['#items'] %}
+      <li class="list-group-item">
+        <a href="#{{ section.entity.field_title.value
+            |lower
+            |replace({
+              ' ': '-',
+              '.': ''
+            }) }}">
+          {{ section.entity.field_title.value }}
+        </a>
+      </li>
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,43 @@
+services:
+  application.service:
+    class: Drupal\application\Service\ApplicationService
+    arguments: []
+
+  application.login:
+    class: Drupal\application\Service\ApplicationLogin
+    arguments: []
+
+  application.enabler:
+    class: Drupal\application\Service\ApplicationEnabler
+    arguments: []
+
+  application.node:
+    class: Drupal\application\Service\ApplicationNode
+    arguments: []
+
+  application.participant:
+    class: Drupal\application\Service\ApplicationParticipant
+    arguments: []
+
+  competition.service:
+    class: Drupal\application\Service\CompetitionService
+    arguments: []
+
+  state.service:
+    class: Drupal\application\Service\StateService
+    arguments: []
+
+  zip.service:
+    class: Drupal\application\Service\ZipService
+    arguments: []
+
+  application.route_subscriber:
+    class: Drupal\application\Routing\RouteSubscriber
+    tags:
+      - { name: event_subscriber }
+
+  application.commands:
+    class: \Drupal\application\Commands\DownloadCommand
+    tags:
+      - { name: drush.command }
+    arguments: ["@entity_type.manager", "@logger.factory", "@settings"]

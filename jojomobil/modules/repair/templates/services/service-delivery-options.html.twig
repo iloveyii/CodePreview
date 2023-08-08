@@ -1,0 +1,49 @@
+<div class="product">
+  {# <!-- Service option --> #}
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center mt-3 mt-xl-5">
+        {{ title }}
+      </h2>
+      <small class="text-center d-block">{{ subtitle }}</small>
+    </div>
+  </div>
+  <div class="repair service-option">
+    <div class="row justify-content-center mt-3 mt-xl-5">
+      {% for sdo in list_sdo %}
+        {% if service.id in default_value %}
+          {% set active = 'active' %}
+        {% else %}
+          {% set active = '' %}
+        {% endif %}
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+          <input type="radio"
+            id="id_{{ sdo.id }}"
+            name="sdo"
+            value="{{ sdo.id }}"
+            {{ default_value == sdo.id ? 'checked' : '' }} />
+          <label class="w-100 card-link {{ error }} {{
+            default_value == sdo.id
+              ? 'active'
+              : ''
+            }}"
+            for="id_{{ sdo.id }}">
+            <div class="card">
+              <div class="card-inner">
+                <img src="{{ sdo.image_url }}" class="" alt="{{ sdo.name }}" />
+              </div>
+              <div class="card-body text-center">
+                <p class="card-text fw-bold display-3">
+                  {{ sdo.name }}
+                </p>
+                <small class="d-block text-center">
+                  {{ sdo.subtitle|raw }}
+                </small>
+              </div>
+            </div>
+          </label>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

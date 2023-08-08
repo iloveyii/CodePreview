@@ -1,0 +1,295 @@
+# ---------------------------------------------
+# -------------- SETTINGS ---------------------
+# ---------------------------------------------
+application.admin_settings:
+  path: '/admin/config/content/application'
+  defaults:
+    _form: '\Drupal\application\Form\ApplicationSettingsForm'
+    _title: 'Application Settings'
+  requirements:
+    _permission: 'administer application'
+
+# ---------------------------------------------
+# ------------- APPLICATION FORM --------------
+# ---------------------------------------------
+application.form:
+  path: '/application/{nid}'
+  defaults:
+    _form: '\Drupal\application\Form\ApplicationForm'
+    _title: 'Application for challenge'
+  requirements:
+    _permission: 'view application'
+    nid: ^\d+$
+
+application.edit:
+  path: '/application/{nid}/edit'
+  defaults:
+    _controller: '\Drupal\application\Controller\ApplicationController::edit'
+    _title: 'Application edit'
+  requirements:
+    _permission: 'view application'
+    nid: ^\d+$
+
+application.view:
+  path: '/application/{nid}/view'
+  defaults:
+    _controller: '\Drupal\application\Controller\ApplicationController::view'
+    _title: 'Application view'
+  requirements:
+    _permission: 'view application'
+    nid: ^\d+$
+
+application.success:
+  path: '/application/success'
+  defaults:
+    _controller: '\Drupal\application\Controller\ApplicationController::success'
+    _title: 'Application success page'
+  requirements:
+    _permission: 'view application'
+
+# ---------------------------------------------
+# ----------------- LOGIN ---------------------
+# ---------------------------------------------
+application.login:
+  path: '/application/login'
+  defaults:
+    _form: '\Drupal\application\Form\LoginForm'
+    _title: 'Form to login to application process'
+  requirements:
+    _permission: 'view application'
+
+application.logout:
+  path: '/application/logout'
+  defaults:
+    _controller: '\Drupal\application\Controller\LoginController::logout'
+    _title: 'Logout user'
+  requirements:
+    _permission: 'view application'
+
+application.reset:
+  path: '/application/reset'
+  defaults:
+    _form: '\Drupal\application\Form\ResetForm'
+    _title: 'Form to reset your credentials for application process'
+  requirements:
+    _permission: 'view application'
+
+# ---------------------------------------------
+# ----------------- DASHBOARD -----------------
+# ---------------------------------------------
+application.review:
+  path: '/application/review/{nid}'
+  defaults:
+    _form: '\Drupal\application\Form\ApplicationReview'
+    _title: 'Review the application'
+  requirements:
+    _permission: 'view application'
+    nid: ^\d+$
+
+application.reviewer:
+  path: '/application/reviewer'
+  defaults:
+    _form: '\Drupal\application\Form\ApplicationReviewer'
+    _title: 'Peer Review the following applications'
+  requirements:
+    _permission: 'view application'
+    # uid: ^[a-z_\-0-9]+$
+
+application.dashboard:
+  path: '/application/dashboard/{uid}'
+  defaults:
+    _controller: '\Drupal\application\Controller\ParticipantController::dashboard'
+    _title: 'Participants dashboard'
+  requirements:
+    # _accesss: 'TRUE'
+    _permission: 'view application'
+    uid: ^\w+$
+
+application.download:
+  path: '/application/download/{id}'
+  defaults:
+    _controller: '\Drupal\application\Controller\ParticipantController::downloadExpDateFile'
+    _title: 'Experimental data download'
+  requirements:
+    _permission: 'view application'
+    id: ^\d+$
+
+# ---------------------------------------------
+# ----------------- REPORTS -------------------
+# ---------------------------------------------
+application.report.peer_reviews:
+  path: '/admin/reports/application/peerreviewers'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::peer_reviewers'
+    _title: 'List of Reviews by Peer Reviewers'
+  requirements:
+    _permission: 'view application report'
+
+application.report.applications:
+  path: '/admin/reports/application/applications'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::applications'
+    _title: 'List of Reviews by Applications'
+  requirements:
+    _permission: 'view application report'
+
+application.report.application_public:
+  path: '/challenges/app/{uid}'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::application_public'
+    _title: 'Reviews of a single Application'
+  requirements:
+    _permission: 'view application'
+  uid: ^[a-z0-9]+$
+
+application.report.reviews:
+  path: '/admin/reports/application/reviews'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::reviews'
+    _title: 'List of Reviews by Reviewers'
+  requirements:
+    _role: 'reviews'
+
+application.report.assessment:
+  path: '/application/assessment'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::assessment'
+    _title: 'List of Reviews by Reviewers for the logged in user'
+  requirements:
+    _permission: 'view application'
+
+application.report.peerreview:
+  path: '/application/peerreview/{aid}'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::peerreview'
+    _title: 'Peer reviews for the logged in user per application'
+  requirements:
+    _permission: 'view application'
+    aid: ^\d+$
+
+application.report.printstyledpanel:
+  path: '/admin/reports/application/printstyledpanel'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::printStyled'
+    _title: 'List of Reviews by Reviewers'
+  requirements:
+    _role: 'reviews'
+
+application.report.printsimplepanel:
+  path: '/admin/reports/application/printsimplepanel'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::printSimple'
+    _title: 'List of Reviews by Reviewers'
+  requirements:
+    _role: 'reviews'
+
+
+application.report.query:
+  path: '/admin/reports/application/query'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::query'
+    _title: 'Query reports'
+  requirements:
+    _role: 'reviews'
+
+application.report.view:
+  path: '/admin/reports/application/view'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::view'
+    _title: 'View reports'
+  requirements:
+    _role: 'reviews'
+
+# ---------------------------------------------
+# ------------- IMPORT/EXPORT -----------------
+# ---------------------------------------------
+application.export:
+  path: '/admin/reports/application/export/{nid}'
+  defaults:
+    _controller: '\Drupal\application\Controller\ImportController::export'
+    _title: 'Export an application by nid from live server database'
+  requirements:
+    _permission: 'administer application'
+    nid: ^\d+$
+
+application.import:
+  path: '/admin/reports/application/import'
+  defaults:
+    _controller: '\Drupal\application\Controller\ImportController::import'
+    _title: 'Import all applications from live server database'
+  requirements:
+    _permission: 'administer application'
+
+# ---------------------------------------------
+# ------------- ZIP DOWNLOAD FILES ------------
+# ---------------------------------------------
+application.report.hidownload:
+  path: '/admin/reports/application/hidownload/{cid}'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::hiDownload'
+    _title: 'Download all files attached to applications'
+  requirements:
+    _role: 'reviews'
+    cid: ^\d+$
+
+application.report.msdownload:
+  path: '/admin/reports/application/msdownload/{cid}'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::msDownload'
+    _title: 'Download all files attached to applications'
+  requirements:
+    _role: 'reviews'
+    cid: ^\d+$
+
+application.report.hodownload:
+  path: '/admin/reports/application/hodownload/{cid}'
+  defaults:
+    _controller: '\Drupal\application\Controller\ReportController::hoDownload'
+    _title: 'Download all files attached to applications'
+  requirements:
+    _role: 'reviews'
+    cid: ^\d+$
+
+# ---------------------------------------------
+# ------------- CHALLENGE PAGES --------------
+# ---------------------------------------------
+challenge.view:
+  path: '/challenges/{title}'
+  defaults:
+    _controller: '\Drupal\application\Controller\ChallengeController::view'
+    _title_callback: '\Drupal\application\Controller\ChallengeController::title'
+  requirements:
+    _permission: 'access content'
+    title: ^[\w\-åäöÅÄÖ]+$
+
+challenge.computational_methods:
+  path: '/challenges/{title}/computational-methods'
+  defaults:
+    _controller: '\Drupal\application\Controller\ChallengeController::computational_methods'
+    _title_callback: '\Drupal\application\Controller\ChallengeController::title'
+  requirements:
+    _permission: 'access content'
+    title: ^[\w\-åäöÅÄÖ]+$
+
+# ---------------------------------------------
+# ------ Menu computational methods -----------
+# ---------------------------------------------
+# challenge.menus:
+#   path: '/challenge-11/computational-methods'
+#   defaults:
+#     _controller: '\Drupal\application\Controller\MenuController::challenge1'
+#     _title_callback: '\Drupal\application\Controller\MenuController::title'
+#   requirements:
+#     _custom_access: '\Drupal\application\Controller\MenuController::access1'
+
+# ---------------------------------------------
+# ------ TEST Route                 -----------
+# ---------------------------------------------
+challenge.test_route:
+  path: '/route/node-form/{nid}'
+  defaults:
+    _controller: '\Drupal\application\Controller\ChallengeController::node_form'
+    _title: 'show node form'
+  requirements:
+    _permission: 'access content'
+    nid: ^\d+$

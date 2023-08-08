@@ -1,0 +1,22 @@
+<?php
+
+/**
+ * @file
+ * Contains actioner.module.
+ */
+
+use Drupal\actioner\Event\UserLoginEvent;
+
+/**
+ * Implements hook_user_login().
+ */
+function actioner_user_login($account)
+{
+  // Log
+  \Drupal::logger('actioner')->notice('hook_user_login ' . __FILE__);
+  // Instantiate our event.
+  $event = new UserLoginEvent($account);
+
+  // Get the event_dispatcher service and dispatch the event.
+  \Drupal::service('event_dispatcher')->dispatch($event, UserLoginEvent::EVENT_NAME);
+}

@@ -1,0 +1,7 @@
+style:
+  version: 1.0
+  css:
+    component:
+      css/version.css: {}
+  js:
+    js/version.js: {}

@@ -1,0 +1,7 @@
+version.admin_settings:
+  path: '/admin/config/content/version'
+  defaults:
+    _form: '\Drupal\version\Form\SettingsForm'
+    _title: 'Version Settings'
+  requirements:
+    _role: 'administrator'

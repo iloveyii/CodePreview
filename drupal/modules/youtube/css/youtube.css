@@ -1,0 +1,10 @@
+.youtube {
+    border: 5px solid lightgray;
+}
+.youtube iframe {
+    width: 100%;
+    min-width: 200px;
+    min-height: 200px;
+    height: auto;
+    min-height: 350px;
+}

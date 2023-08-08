@@ -1,0 +1,41 @@
+<div id="viewsCarouselIndicators"
+  class="carousel slide {{
+  options.animation is not empty
+    ? options.animation
+    : 'slide'
+  }}"
+  data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    {% if options.indicators == 1 %}
+      {% for row in views_carousel_images %}
+        <button type="button"
+          data-bs-target="#viewsCarouselIndicators"
+          data-bs-slide-to="{{ loop.index - 1 }}"
+          class="{{ loop.index == 1 ? 'active' : 'not-active' }}"
+          aria-current="true"
+          aria-label="Slide {{ loop.index }}">
+
+        </button>
+      {% endfor %}
+    {% endif %}
+  </div>
+  <div class="carousel-inner">
+    {{ views_carousel_images }}
+  </div>
+  {% if options.controls == 1 %}
+    <button class="carousel-control-prev"
+      type="button"
+      data-bs-target="#viewsCarouselIndicators"
+      data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next"
+      type="button"
+      data-bs-target="#viewsCarouselIndicators"
+      data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  {% endif %}
+</div>

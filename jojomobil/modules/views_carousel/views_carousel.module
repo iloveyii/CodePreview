@@ -1,0 +1,100 @@
+<?php
+
+// use Drupal\devel\Plugin\Devel\Dumper\Kint;
+
+/**
+ * @file
+ * Theme for TARDIS views.
+ */
+function template_preprocess_views_carousel(&$variables)
+{
+    // View options set by user.
+    $options = $variables['view']->style_plugin->options;
+
+    // Build a two-dimension array with years and months.
+    $time_pool = array();
+
+    foreach ($variables['view']->result as $id => $result) {
+        // Todo: date field options.
+        $created = $result->node_field_data_created;
+        $created_year = date('Y', $created);
+        // Month date format.
+        $month_date_format = (isset($options['month_date_format'])) ? $options['month_date_format'] : 'm';
+        $created_month_digits = date('m', $created);
+        $created_month = date($month_date_format, $created);
+        $time_pool[$created_year][$created_month_digits] = "$created_month";
+    }
+
+    $options['time_pool'] = $time_pool;
+
+    // Update options for twig.
+    $variables['options'] = $options;
+    print_r($options);
+    exit;
+}
+
+/**
+ * Implements hook_preprocess
+ */
+function views_carousel_preprocess(&$variables, $hook)
+{
+    // View options set by user.
+    $options = $variables['view']->style_plugin->options;
+    // kint($options);
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for theme_views_view_vertical_tabs().
+ */
+function template_preprocess_views_view_views_carousel(&$variables)
+{
+    /** @var \Drupal\views\ViewExecutable $view */
+    $view = $variables['view'];
+    $rows = $variables['rows'];
+    $style = $view->style_plugin;
+    $options = $style->options;
+    $variables['options'] = $options;
+
+    foreach ($rows as $id => $row) {
+        $active = $id == 0 ? 'active' : '';
+        // Get Image
+        $field = 'field_image';
+        $image = '';
+        if (isset($view->field[$field])) {
+            $image = $style->getField($id, $field);
+            if ($view->field[$field]->options['label']) {
+                $label = $view->field[$field]->options['label'] . ':';
+            }
+        }
+
+        // Get title
+        $field = 'title';
+        $title = '';
+        if (isset($view->field[$field])) {
+            $title = strip_tags(htmlspecialchars_decode($style->getField($id, $field)));
+            if ($view->field[$field]->options['label']) {
+                $label = $view->field[$field]->options['label'] . ':';
+            }
+        }
+
+        // Get summary
+        $field = 'body';
+        $summary = '';
+        if (isset($view->field[$field])) {
+            $summary = $style->getField($id, $field);
+            if ($view->field[$field]->options['label']) {
+                $label = $view->field[$field]->options['label'] . ':';
+            }
+        }
+
+        if (isset($options['captions']) && $options['captions'] == 1) {
+            $variables['views_carousel_images'][$id] = [
+                '#markup' => sprintf("<div data-bs-interval='%d' class='carousel-item %s'>%s <div class='carousel-caption d-none d-md-block'> <h5>%s</h5> %s </div> </div>", isset($options['interval']) ? intval($options['interval']) * 1000 : 3000, $active, $image, $title, $summary)
+            ];
+        } else {
+            $variables['views_carousel_images'][$id] = [
+                '#markup' => sprintf("<div data-bs-interval='%d' class='carousel-item %s'>%s </div>", isset($options['interval']) ? intval($options['interval']) * 1000 : 3000, $active, $image)
+            ];
+        }
+    }
+}

@@ -1,0 +1,51 @@
+{# <!-- Select product model --> #}
+<div class="mt-5 product services">
+  <div class="container g-0">
+    <div class="row">
+      <div class="col">
+        <a class="anchor" id="quote-start"></a>
+        <h2 class="text-center">
+          {{ title }}
+        </h2>
+        <small class="text-center d-block">{{ subtitle }}</small>
+      </div>
+    </div>
+    <div class="row repair">
+      <div class="row justify-content-center mt-3 mt-xl-5">
+        {% for service in list_services %}
+          {% if service.id in default_value %}
+            {% set active = 'active' %}
+          {% else %}
+            {% set active = '' %}
+          {% endif %}
+          <div id="{{ service.id }}"
+            class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+            <input type="checkbox"
+              id="id_{{ service.id }}"
+              name="service[]"
+              value="{{ service.id }}"
+              {{ active == 'active' ? 'checked' : '' }} />
+            <label class="card-link  {{ error }} {{ active }}"
+              for="id_{{ service.id }}">
+              <div class="card">
+                <div class="card-inner">
+                  <img src="{{ service.image_url }}"
+                    class=""
+                    alt="{{ service.name }}" />
+                </div>
+                <div class="card-body text-center">
+                  <p class="card-text">
+                    {{ service.name }}
+                  </p>
+                  <small class="d-block text-center small-green">
+                    {{ service.subtitle|raw }}
+                  </small>
+                </div>
+              </div>
+            </label>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>

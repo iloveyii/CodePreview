@@ -1,0 +1,8 @@
+name: Articles Filter 
+type: module
+version: v1.0
+description: Filter out the latest Article
+package: 'Custom'
+core_version_requirement: ^8.8 || ^9
+dependencies:
+  - drupal:views

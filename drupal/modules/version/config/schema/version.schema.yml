@@ -1,0 +1,19 @@
+version.settings:
+  type: config_object
+  label: 'Version Settings'
+  mapping:
+    font_size:
+      type: sequence
+      label: 'Font size for the container to show version'
+      sequence:
+        type: string
+        label: 'Sizes'
+    selected_font_size:
+      type: string
+      label: 'The current font size selected'
+    selected_module:
+      type: string
+      label: 'The module to show version for'
+    db_version:
+      type: string
+      label: 'The initial db version'

@@ -1,0 +1,213 @@
+﻿@page "/"
+@using Accounting.Client.Services;
+@using System.Globalization;
+@using Accounting.Client.Components;
+@using Microsoft.AspNetCore.Components.Authorization;
+@inject IDataService dataService;
+@using Accounting.Shared
+@using Accounting.Client.Authentication
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navManager
+
+
+<div class="row">
+    <div class="col">
+        <AuthorizeView>
+            <Authorized>
+                <h1> Hello @context.User.Identity.Name !</h1>
+            </Authorized>
+            <NotAuthorized>
+                <h1>Hello, Guest !</h1>
+            </NotAuthorized>
+        </AuthorizeView>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-8">
+        <div class="card">
+            <div class="card-header">
+                @currentYear - Earnings and Expenses
+            </div>
+            <div class="card-body">
+                <RadzenChart>
+                    <RadzenColumnSeries Fill="#AACDBE" Data="@yearlyEarnings" CategoryProperty="Month" ValueProperty="Amount" Title="Earnings" LineType="LineType.Solid" />
+                    <RadzenColumnSeries Fill="#EA907A" Data="@yearlyExpenses" CategoryProperty="Month" ValueProperty="Amount" Title="Expenses" LineType="LineType.Dotted" />
+
+                    <RadzenColumnOptions Radius="5" />
+                    <RadzenValueAxis Formatter="@FormatAsUSD">
+                        <RadzenGridLines Visible="true" />
+                        <RadzenAxisTitle Text="Amount in USD" />
+                    </RadzenValueAxis>
+                </RadzenChart>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (earnings != null)
+{
+    <div class="row mt-4">
+        <div class="col-md-12 col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    Earnings - last 3 Months
+                </div>
+                <div class="card-body">
+                    <div style="display: flex">
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <RadzenChart>
+                                    <RadzenPieSeries Data="@earnings.CurrentMonth.Data"
+                                                     Title="Current month"
+                                                     CategoryProperty="Category"
+                                                     ValueProperty="Amount">
+                                    </RadzenPieSeries>
+                                </RadzenChart>
+                                <div class="d-flex justify-content-center">
+                                    @currentMonth
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <RadzenChart>
+                                    <RadzenPieSeries Data="@earnings.LastMonth.Data"
+                                                     Title="Last month"
+                                                     CategoryProperty="Category"
+                                                     ValueProperty="Amount"></RadzenPieSeries>
+                                </RadzenChart>
+                                <div class="d-flex justify-content-center">
+                                    @lastMonth
+                                </div>
+                            </div>
+
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <RadzenChart>
+                                    <RadzenPieSeries Data="@earnings.PreviousMonth.Data"
+                                                     Title="Previous month"
+                                                     CategoryProperty="Category"
+                                                     ValueProperty="Amount"></RadzenPieSeries>
+
+                                </RadzenChart>
+                                <div class="d-flex justify-content-center">
+                                    @previousMonth
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p>Earnings are null</p>
+}
+
+@if (expenses != null)
+{
+    <div class="row mt-4 mb-5">
+        <div class="col-md-12 col-lg-10">
+            <div class="card">
+                <div class="card-header">
+                    Expenses - last 3 Months
+                </div>
+                <div class="card-body">
+                    <div style="display: flex">
+
+                        <div class="row">
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <RadzenChart>
+                                    <RadzenPieSeries Data="@expenses.CurrentMonth.Data"
+                                                     Title="Current month"
+                                                     CategoryProperty="Category"
+                                                     ValueProperty="Amount">
+                                    </RadzenPieSeries>
+                                </RadzenChart>
+                                <div class="d-flex justify-content-center">
+                                    @currentMonth
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <RadzenChart>
+                                    <RadzenPieSeries Data="@expenses.LastMonth.Data"
+                                                     Title="Last month"
+                                                     CategoryProperty="Category"
+                                                     ValueProperty="Amount"></RadzenPieSeries>
+                                </RadzenChart>
+                                <div class="d-flex justify-content-center">
+                                    @lastMonth
+                                </div>
+                            </div>
+                            <div class="col-sm-12 col-md-6 col-lg-4">
+                                <RadzenChart>
+                                    <RadzenPieSeries Data="@expenses.PreviousMonth.Data"
+                                                     Title="Previous month"
+                                                     CategoryProperty="Category"
+                                                     ValueProperty="Amount"></RadzenPieSeries>
+                                </RadzenChart>
+                                <div class="d-flex justify-content-center">
+                                    @previousMonth
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+}
+else
+{
+    <p>Expenses are null</p>
+}
+
+@code {
+
+    [CascadingParameter]
+    private Task<AuthenticationState> authenticationState { get; set; }
+    private static int currentYear = DateTime.Today.Year;
+    private ICollection<string> colors = new List<string>() { "#FBC687", "#F4F7C5", "#93ABD3" };
+
+    private ICollection<YearlyItem> yearlyEarnings;
+    private ICollection<YearlyItem> yearlyExpenses;
+    private ThreeMonthsData earnings;
+    private ThreeMonthsData expenses;
+
+    private string currentMonth;
+    private string lastMonth;
+    private string previousMonth;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var hasAccess = await Helper.UserLoggedIn(authStateProvider);
+        if (hasAccess)
+        {
+            yearlyEarnings = await dataService.LoadCurrentYearEarnings();
+            yearlyExpenses = await dataService.LoadCurrentYearExpenses();
+
+            earnings = await dataService.LoadLast3MonthsEarnings();
+            expenses = await dataService.LoadLast3MonthsExpenses();
+            currentMonth = DataService.GetMonthAsText(DateTime.Today.Month, DateTime.Today.Year);
+            var _lastMonth = DateTime.Today.AddMonths(-1);
+            lastMonth = DataService.GetMonthAsText(_lastMonth.Month, _lastMonth.Year);
+            var _previousMonth = DateTime.Today.AddMonths(-2);
+            previousMonth = DataService.GetMonthAsText(_previousMonth.Month, _previousMonth.Year);
+
+            StateHasChanged();
+        }
+        else
+        {
+            navManager.NavigateTo("/login");
+        }
+
+    }
+    string FormatAsUSD(object value)
+    {
+        return ((double)value).ToString("C0", CultureInfo.CreateSpecificCulture("en-US"));
+    }
+}

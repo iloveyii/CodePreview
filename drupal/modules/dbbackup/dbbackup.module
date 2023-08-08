@@ -1,0 +1,55 @@
+<?php
+
+
+/**
+ * @file
+ * Provides hook implementations for the Workflows module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function dbbackup_help($route_name, RouteMatchInterface $route_match)
+{
+    switch ($route_name) {
+        case 'help.page.dbbackup':
+            $output = '';
+            $output .= '<h3>' . t('About') . '</h3>';
+            $output .= '<p>' . t('The DbBackup module provides a variety of methods for taking & restoring database backups.') . '</p>';
+            $output .= '<h4>' . t('DbBackup') . '</h4>';
+            $output .= '<p>' . t('Every method is enabled automatically based on your environement') . '</p>';
+            $output .= '<p>' . t('A particular condition that something is in at a specific time. The usage of the state is determined by a module that harnesses the Workflows module. For example, Content Moderation allows a state to be used for moderation of content by assigning a given state to a content item.') . '</p>';
+            return $output;
+    }
+}
+
+/**
+ * Implement hook_form_alter hook
+ */
+function dbbackup_form_alter(&$form, &$form_state, $form_id)
+{
+    // Check when the right form is passed.
+    if ($form_id == 'dbbackup_admin_settings') {
+
+        // // Add the check box.
+        // $form['serialization_backup'] = array(
+        //     '#type' => 'checkbox',
+        //     '#title' => t('Download using serialization'),
+        // );
+
+        // // If socat is installed then provide option
+        // $file_path = sprintf("/opt/shell/cmd.log");
+        // if (file_exists($file_path)) {
+        //     $myfile = fopen($file_path, 'r');
+        //     $data = fread($myfile, filesize($file_path));
+        //     if (str_contains($data, 'socat_cmd_exist')) {
+        //         $form['mysql_backup'] = array(
+        //             '#type' => 'checkbox',
+        //             '#title' => t('Download using MySQL cmd'),
+        //         );
+        //     }
+        // }
+    }
+}

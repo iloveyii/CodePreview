@@ -1,0 +1,63 @@
+### This file works automatically with vs code and may work in other IDEs using some rest plugin
+### ----------------------------------
+### Controller API
+### ----------------------------------
+
+###
+// Get all users
+GET http://localhost:6600/api/v1/users
+Content-Type: application/json
+
+
+###
+// Get a user
+GET http://localhost:6600/api/v1/users/5f2c7db9b40d81528892c8a6
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVmMmM3ZGI5YjQwZDgxNTI4ODkyYzhhNiIsImVtYWlsIjoibmV3dXNlckB1c2VyLmNvbSIsImlhdCI6MTU5Njc1MjQ2OX0.MZVf4tnYDc7a0y9D83sGVUc8DKUapxdN1iPl0pOMivo
+Content-Type: application/json
+
+
+###
+// Create a user
+POST http://localhost:6600/api/v1/users
+Content-Type: application/json
+
+{
+  "user": {
+    "email": "newuser@user.com",
+    "password": "newuser-pass"
+  }
+}
+
+
+###
+// Delete a user
+DELETE http://localhost:6600/api/v1/users/5f01adb31db0d633c0f8af62
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZmUyZWNkNjRmNWFiNTQzZGZmODM1MCIsImVtYWlsIjoibmV3dXNlckB1c2VyLmNvbSIsImlhdCI6MTU5MzcxNzE4MX0.vnUV3gKdJsj5B2xoxqPgHnzJHUBm-MGuX4yJbzDJQa8
+Content-Type: application/json
+
+
+###
+// Update a user
+PUT http://localhost:6600/api/v1/users/5f01ac97b4df2d32a355ea65
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjVlZmUyZWNkNjRmNWFiNTQzZGZmODM1MCIsImVtYWlsIjoibmV3dXNlckB1c2VyLmNvbSIsImlhdCI6MTU5MzcxNzE4MX0.vnUV3gKdJsj5B2xoxqPgHnzJHUBm-MGuX4yJbzDJQa8
+Content-Type: application/json
+
+{
+  "user": {
+    "email": "login1@user.com",
+    "password": "login1-pass"
+  }
+}
+
+
+###
+// Login a user
+POST http://localhost:6600/api/v1/logins
+Content-Type: application/json
+
+{
+  "user": {
+    "email": "newuser@user.com",
+    "password": "newuser-pass"
+  }
+}

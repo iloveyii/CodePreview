@@ -1,0 +1,28 @@
+{# Handle a subtree #}
+{% macro menu_links(items) -%}
+  {% for menu_item in items %}
+    {# CASE : 1.B #}
+    {% if menu_item.submenu == false %}
+      <li>
+        <a class="nav-link px-md-3 px-sm-5 dropdown-item"
+          href="{{ menu_item.url }}">
+          {{ menu_item.text }}
+        </a>
+      </li>
+    {% endif %}
+    {# CASE : 3 #}
+    {% if menu_item.submenu == true %}
+      <li class="dropdown-submenu">
+        <a class="nav-link px-md-3 px-sm-5 dropdown-item dropdown-toggler"
+          href="#"
+          role="button">
+          {{ menu_item.text }}
+          <i class="float-end"></i>
+        </a>
+        <ul class="dropdown-menu">
+          {{ _self.menu_links(menu_item.submenu) }}
+        </ul>
+      </li>
+    {% endif %}
+  {% endfor %}
+{%- endmacro %}

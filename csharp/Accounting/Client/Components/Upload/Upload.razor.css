@@ -1,0 +1,120 @@
+﻿.file-drop-zone {
+    width: 100%;
+    align-items: center;
+    margin-bottom: 5rem;
+    border: 2px solid lightgray;
+    border-radius: 3px;
+    padding: 1.5rem;
+}
+    .file-drop-zone .label-default {
+        background-color: #d3d3d363 !important;
+        width: 100%;
+        border-radius: 1px;
+        display: flex;
+        flex-direction: column;
+        padding: 2rem;
+        align-items: center;
+        justify-content: space-between;
+    }
+
+    .file-drop-zone .files-img {
+        width: 100px;
+        height: auto;
+    }
+.btn-plus {
+    border: none;
+    display: flex;
+    text-align: center;
+    justify-content: space-between;
+    min-width: 135px;
+    line-height: 30px;
+    border-color: transparent;
+}
+.progressbar {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+.progressbar .filename {
+    margin-top: 2.5rem;
+    overflow-wrap: break-word;
+    color: white;
+    background-color: #228b228f;
+    border-radius: 1px;
+    width: 90%;
+    padding: .25rem;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.progressbar .percentage {
+    color: white;
+    font-weight: bold;
+    width:90%;
+}
+.hover {
+    border-style: solid;
+    background-color: #00ca71;
+}
+
+.image-container img {
+    width: 20%;
+    margin: 1rem;
+}
+
+::deep input[type=file] {
+    width: 100%;
+    padding: 20px;
+    visibility: hidden;
+}
+
+.image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.image-list .card {
+    height: 10rem;
+    width: 11.9rem;
+    background-size: cover;
+    background-position: center;
+}
+
+.image-list .btn-close {
+    position: absolute;
+    right: 8px;
+    top: 8px;
+    background-color: white;
+    border: 2px solid red;
+}
+
+/* PROGRESS: background: */
+progress::-webkit-progress-bar {
+    background-color: black;
+    width: 100%;
+}
+
+/* value: */
+progress::-webkit-progress-value {
+    background-color: green !important;
+}
+
+progress::-moz-progress-bar {
+    background-color: green !important;
+}
+
+progress {
+    color: green;
+    width: 100%;
+    background-color: black;
+}
+
+/* Show hide label area */
+.d-visible {
+    display: flex !important;
+}
+.d-visible-hidden {
+    display: none !important;
+}

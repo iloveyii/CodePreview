@@ -1,0 +1,8 @@
+name: Application Form
+description: Allows users to to apply on published challenges
+package: My Custom Modules
+type: module
+version: 1.0
+core: "8.x"
+core_version_requirement: ^8 || ^9
+configure: application.admin_settings

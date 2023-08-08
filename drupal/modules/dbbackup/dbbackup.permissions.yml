@@ -1,0 +1,4 @@
+administer dbbackup:
+  title: 'Administer DbBackup settings'
+  description: 'Access the administrative settings page of dbbackup'
+  restrict access: true

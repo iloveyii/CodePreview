@@ -1,0 +1,6 @@
+dbbackup.admin_settings:
+  title: 'Database Backup Settings'
+  description: 'Configure the dbbackup settings'
+  route_name: dbbackup.admin_settings
+  parent: system.admin_config_development
+  weight: 10

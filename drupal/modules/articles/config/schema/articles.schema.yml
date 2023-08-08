@@ -1,0 +1,29 @@
+# 'articles' should match your plugin name.
+# views.filter_value.articles_filter:
+#   type: mapping
+#   label: 'Relative Date Filter'
+#   mapping:
+#     relative_date: #matches machine name of the form element
+#       type: string
+#       label: 'Relative Date Filter'
+
+# views.filter.articles:
+#   type: views.filter.string
+#   label: 'Articles filter'
+#   mapping:
+#     relative_date:
+#       type: sequence
+#       label: 'Fields'
+#       sequence:
+#         type: string
+#         label: 'Field'
+# views.filter_value.articles_filter:
+#   type: sequence
+#   label: 'Articles to filter on'
+#   sequence:
+#     type: string
+#     label: 'Articles to filter on'
+
+views.filter.articles_latest_article_filter:
+  type: views.filter.in_operator
+  label: 'Allowed articles'

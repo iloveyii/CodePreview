@@ -1,0 +1,25 @@
+<?php
+
+use Drupal\views\Plugin\views\query\QueryPluginBase;
+use Drupal\views\ViewExecutable;
+
+
+$data = [];
+
+/**
+ * Implements hook_views_query_alter().
+ */
+function articles_views_query_alter(ViewExecutable $view, QueryPluginBase $query)
+{
+    if (in_array($view->id(), ['articles', 'try_field_token_plugin']) &&  in_array($view->current_display, ['block_1', 'block_2', 'block_3', 'page_1'])) {
+        // Filter out latest article
+        $q = \Drupal::entityQuery('node')
+            ->condition('type', 'landing_page')
+            ->sort('created', 'DESC')
+            ->range(0, 1)
+            ->accessCheck(FALSE);
+        $ids = $q->execute();
+
+        $query->addWhere('', 'node_field_data.nid', reset($ids), '!=');
+    }
+}

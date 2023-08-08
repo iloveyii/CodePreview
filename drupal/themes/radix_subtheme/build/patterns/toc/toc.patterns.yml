@@ -1,0 +1,21 @@
+## File: THEME/patterns/toc/toc.patterns.yml
+toc:
+  label: 'TOC Component'
+  description: A Table of contents from Sections of Articles
+  fields:
+    title:
+      type: text
+      label: Title
+      description: Title of the page
+      preview: 'Title of the page'
+    sections:
+      type: mixed
+      label: Sections
+      description: Sections of the Landing page
+      preview: 'Sections of the Landing page'
+  libraries:
+    -
+      toc:
+        css:
+          component:
+            css/toc.css: {}

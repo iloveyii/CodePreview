@@ -1,0 +1,51 @@
+<div [id]="'item-stock-preview-' + element.id" class="item-stock-preview-on">
+  {{ element[column] }}
+  <button
+    mat-button
+    class="edit-button"
+    color="primary"
+    (click)="showItemStockEditForm(element.id)"
+  >
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<div [id]="'item-stock-edit-' + element.id" class="item-stock-edit-off">
+  <mat-form-field class="edit-item-form-input" appearance="outline">
+    <mat-label>Stock</mat-label>
+    <input
+      type="number"
+      matInput
+      [id]="'item-stock-edit-input-' + element.id"
+      required
+      placeholder="Ex. 15"
+      min="0"
+      value="{{ element[column] }}"
+    />
+  </mat-form-field>
+
+  <button
+    mat-button
+    class="edit-submit-button"
+    color="primary"
+    (click)="updateItemStock(element)"
+  >
+    Submit
+  </button>
+
+  <button
+    mat-button
+    class="edit-cancel-button"
+    color="warn"
+    (click)="showItemStockPreview(element.id, element.stock)"
+  >
+    Cancel
+  </button>
+
+  <mat-error
+    [id]="'item-stock-edit-error-' + element.id"
+    class="item-stock-edit-error-off"
+  >
+    Item stock cannot be negative!
+  </mat-error>
+</div>

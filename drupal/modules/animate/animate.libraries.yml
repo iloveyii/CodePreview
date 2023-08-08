@@ -1,0 +1,31 @@
+bounce_expand:
+  version: 1.0
+  css:
+    component:
+      css/bounce-expand.css: {}
+lineup:
+  version: 1.0
+  css:
+    component:
+      css/lineup.css: {}
+
+revealing:
+  version: 1.0
+  css:
+    component:
+      css/revealing.css: {}
+threed:
+  version: 1.0
+  css:
+    component:
+      css/threed.css: {}
+  js:
+    js/threed.js: {}
+
+smoothe:
+  version: 1.0
+  css:
+    component:
+      css/smoothe.css: {}
+  js:
+    js/smoothe.js: {}

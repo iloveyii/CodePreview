@@ -1,0 +1,38 @@
+﻿
+### Get All books
+
+GET https://localhost:7137/api/v1/book
+Accept: application/json 
+Content-Type: application/json
+
+### Get one book
+
+GET https://localhost:7137/api/v1/book/1
+Accept: application/json 
+Content-Type: application/json
+
+### Create new book
+POST https://localhost:7137/api/v1/book
+Accept: application/json 
+Content-Type: application/json
+
+{
+    "Title" : "A very good title",
+    "PublicationYear": 2022
+}
+
+### Update a book
+
+PUT https://localhost:7137/api/v1/book/3
+Accept: application/json 
+Content-Type: application/json
+
+{
+    "Title" : "A very good title Updated",
+    "PublicationYear": 2021
+}
+
+### Delete a book
+DELETE  https://localhost:7137/api/v1/book/3
+Accept: application/json 
+Content-Type: application/json

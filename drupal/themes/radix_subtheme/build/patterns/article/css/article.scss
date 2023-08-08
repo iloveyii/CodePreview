@@ -1,0 +1,27 @@
+        
+@import "./src/scss/base/colors";
+
+.article {
+    margin-bottom: 2rem;
+    background-color: white;
+    padding: 0;
+
+    .title, h2 {
+        color: $secondary;
+        letter-spacing: 1px;
+        font-variant: petite-caps;
+        font-size: 2rem;
+        font-weight: 600;
+    }
+    h3 {
+        color: $secondary;
+        letter-spacing: 1px;
+        font-size: 1.5rem;
+    }
+    h4 {
+        color: rgb(78, 153, 7);
+        letter-spacing: 1px;
+        font-size: 1.2rem;
+    }
+}
+

@@ -1,0 +1,11 @@
+allowed_types:
+  - application_form
+  - article
+can_review_types:
+  - application_form
+email:
+  - support@cache-challenge.org
+reviewers_reviews_count:
+  - 5
+application_reviewers_count:
+  - 5

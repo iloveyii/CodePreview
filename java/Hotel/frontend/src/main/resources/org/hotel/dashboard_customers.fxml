@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.Bloom?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1200.0" stylesheets="@css/style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.hotel.CustomersController">
+   <children>
+      <BorderPane layoutX="128.0" layoutY="7.0" prefHeight="200.0" prefWidth="200.0" style="-fx-background-color: white;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <top>
+            <AnchorPane prefHeight="85.0" prefWidth="200.0" style="-fx-background-color: #FFFFFF;" BorderPane.alignment="CENTER">
+               <children>
+                  <Pane layoutX="236.0" layoutY="-67.0" prefHeight="35.0" prefWidth="200.0" style="-fx-background-color: black;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fx:id="btnClose" fitHeight="22.0" fitWidth="22.0" layoutX="1164.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true" styleClass="menuClose">
+                           <image>
+                              <Image url="@images/close.png" />
+                           </image>
+                        </ImageView>
+                     </children></Pane>
+                  <HBox prefHeight="85.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="400.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
+                     <children>
+                        <JFXButton fx:id="toolBtnUsers" alignment="CENTER" onAction="#switchToDashboardUsers" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="USERS">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/user.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton onAction="#switchToDashboardCustomers" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="CUSTOMERS">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/customer.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton fx:id="toolBtnRooms" onAction="#switchToDashboardRooms" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="ROOMS">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/single-bed.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton onAction="#switchToDashboardBookings" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="BOOKINGS">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/hotel3.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                        <JFXButton onAction="#switchToPrimary" prefHeight="50.0" prefWidth="136.0" styleClass="menuItem" text="LOGOUT">
+                           <graphic>
+                              <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/logout.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </JFXButton>
+                     </children>
+                     <effect>
+                        <Bloom />
+                     </effect></HBox>
+                  <Label fx:id="mnuHide" layoutX="14.0" layoutY="50.0" styleClass="sdrMenuItem" text="MENU">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true" style="-fx-cursor: pointer;">
+                           <image>
+                              <Image url="@images/menu-hide.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="mnuShow" layoutX="14.0" layoutY="50.0" styleClass="sdrMenuItem" text="MENU">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="22.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/menu.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                     <font>
+                        <Font size="16.0" />
+                     </font>
+                  </Label>
+               </children>
+            </AnchorPane>
+         </top>
+         <left>
+            <AnchorPane fx:id="sdrLeft" prefHeight="200.0" prefWidth="400.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox prefHeight="100.0" prefWidth="200.0" style="-fx-background-color: #2d0439;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <children>
+                        <ImageView fitHeight="35.0" fitWidth="35.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@images/tv.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <JFXButton alignment="BASELINE_LEFT" prefWidth="400.0" text="CUSTOMERS" textFill="#e1cbcb">
+                           <font>
+                              <Font name="Noto Mono" size="20.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <VBox layoutX="126.0" layoutY="89.0" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #23045a;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                     <children>
+                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
+                           <children>
+                              <TextField fx:id="txtName" prefHeight="50.0" prefWidth="360.0" promptText="Name">
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="60.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
+                           <children>
+                              <TextField fx:id="txtPhone" prefHeight="50.0" prefWidth="360.0" promptText="Phone">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
+                           <VBox.margin>
+                              <Insets bottom="20.0" top="40.0" />
+                           </VBox.margin>
+                           <children>
+                              <TextField fx:id="txtEmail" prefHeight="50.0" prefWidth="360.0" promptText="Email">
+                                 <font>
+                                    <Font size="15.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </HBox>
+                        <HBox prefHeight="50.0" prefWidth="400.0" style="-fx-background-color: black;">
+                           <children>
+                              <JFXButton fx:id="btnSave" alignment="CENTER" onAction="#btnSaveClicked" prefHeight="50.0" prefWidth="150.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Save" textFill="#096532">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="btnDeleteCustomers" alignment="CENTER" contentDisplay="TOP" onAction="#btnDeleteCustomersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Delete" textFill="#b21b1b">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                              <JFXButton fx:id="btnCancelCustomers" alignment="CENTER" contentDisplay="TOP" onAction="#btnCancelCustomersClicked" prefHeight="50.0" prefWidth="100.0" style="-fx-font-weight: bold; -fx-background-color: gray;" text="Canel" textFill="#2d0439">
+                                 <font>
+                                    <Font size="17.0" />
+                                 </font>
+                                 <HBox.margin>
+                                    <Insets left="10.0" />
+                                 </HBox.margin>
+                              </JFXButton>
+                           </children>
+                           <VBox.margin>
+                              <Insets top="40.0" />
+                           </VBox.margin>
+                        </HBox>
+                        <Label id="lblError" fx:id="lblError" prefHeight="158.0" prefWidth="370.0" textFill="#d02323">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets top="20.0" />
+                           </VBox.margin>
+                        </Label>
+                     </children>
+                     <padding>
+                        <Insets left="20.0" right="20.0" />
+                     </padding></VBox>
+               </children>
+            </AnchorPane>
+         </left>
+         <right>
+            <AnchorPane prefHeight="200.0" prefWidth="20.0" BorderPane.alignment="CENTER" />
+         </right>
+         <center>
+            <AnchorPane fx:id="acrTable" prefHeight="700.0" prefWidth="691.0" BorderPane.alignment="CENTER">
+               <children>
+                  <HBox layoutY="-23.0" prefHeight="100.0" prefWidth="200.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0">
+                     <children>
+                        <TextField fx:id="txtSearch" prefHeight="43.0" prefWidth="500.0" promptText="Search">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="150.0" />
+                           </HBox.margin>
+                        </TextField>
+                        <JFXButton prefHeight="43.0" prefWidth="130.0" style="-fx-background-color: gray;" text="Search">
+                           <graphic>
+                              <ImageView fitHeight="30.0" fitWidth="30.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@images/search.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                           <HBox.margin>
+                              <Insets left="10.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </JFXButton>
+                     </children>
+                  </HBox>
+                  <TableView fx:id="tableCustomers" layoutX="20.0" layoutY="102.0" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="500.0" prefWidth="800.0" styleClass="table" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="52.0">
+                    <columns>
+                      <TableColumn fx:id="colIdCustomers" prefWidth="35.0" text="Id" />
+                      <TableColumn fx:id="colNameCustomers" prefWidth="202.0" text="Name" />
+                        <TableColumn fx:id="colPhoneCustomers" minWidth="8.0" prefWidth="165.0" text="Phone" />
+                        <TableColumn fx:id="colEmailCustomers" minWidth="0.0" prefWidth="207.0" text="Email" />
+                        <TableColumn fx:id="colActionCustomers" minWidth="0.0" prefWidth="141.0" text="Action" />
+                    </columns>
+                  </TableView>
+               </children>
+               <BorderPane.margin>
+                  <Insets left="10.0" />
+               </BorderPane.margin>
+            </AnchorPane>
+         </center>
+      </BorderPane>
+   </children>
+</AnchorPane>

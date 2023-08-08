@@ -1,0 +1,30 @@
+<?php
+
+/**
+ * @file
+ * Theme functions.
+ */
+
+// Include all files from the includes directory.
+$includes_path = dirname(__FILE__) . '/includes/*.inc';
+foreach (glob($includes_path) as $filename) {
+  require_once dirname(__FILE__) . '/includes/' . basename($filename);
+}
+
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function radix_subtheme_preprocess_node(&$variables)
+{
+  $variables['youtube'] = 'I am youtube block';
+}
+
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function radix_subtheme_preprocess_page(&$variables)
+{
+  $variables['youtube2'] = 'I am youtube block';
+}

@@ -1,0 +1,27 @@
+<hr />
+
+{% if center == true %}
+  <p class="text-center mt-5">
+    <button id="{{ id }}"
+      class="btn btn-primary btn-lg py-3 px-5 mb-5"
+      type="button">
+      <span class="spinner-border spinner-border-sm"
+        role="status"
+        aria-hidden="true">
+
+      </span>
+      {{ title }}
+    </button>
+  </p>
+{% else %}
+  <button id="{{ id }}"
+    class="btn btn-primary btn-lg py-3 px-5 mb-5 mt-5"
+    type="button">
+    <span class="spinner-border spinner-border-sm"
+      role="status"
+      aria-hidden="true">
+
+    </span>
+    {{ title }}
+  </button>
+{% endif %}

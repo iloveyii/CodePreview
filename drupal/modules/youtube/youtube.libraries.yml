@@ -1,0 +1,4 @@
+youtube:
+  css:
+    theme:
+      css/youtube.css: {}

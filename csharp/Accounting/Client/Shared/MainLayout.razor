@@ -1,0 +1,61 @@
+﻿@inherits LayoutComponentBase
+@using Accounting.Shared
+@using Accounting.Client.Authentication
+@using Blazored.Toast
+@using Blazored.Toast.Configuration
+@using Blazored.SessionStorage
+@using Blazored.Toast.Services
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navManager
+@inject ISessionStorageService sessionStorage
+@inject IToastService toastService
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <main>
+        <div class="top-row px-4">
+            <AuthorizeView>
+                <Authorized>
+                    <a @onclick="Logout" href="javascript:void(0)">Logout</a>
+                </Authorized>
+                <NotAuthorized>
+                    <a href="/login">Login</a>
+                </NotAuthorized>
+            </AuthorizeView>
+            <a href="https://docs.microsoft.com/aspnet/" target="_blank">About</a>
+        </div>
+
+        <article class="content px-4">
+            @Body
+        </article>
+        <BlazoredToasts 
+            Position="ToastPosition.BottomRight"
+            Timeout="20"
+            RemoveToastsOnNavigation="false"
+            />
+    </main>
+</div>
+
+@code {
+
+    private async Task Logout()
+    {
+        var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
+        await customAuthStateProvider.UpdateAuthenticationState(null);
+        navManager.NavigateTo("/login", true);
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        var toast = await sessionStorage.GetItemAsStringAsync("toast");
+        if (!string.IsNullOrWhiteSpace(toast))
+        {
+            toastService.ShowInfo(toast);
+            await sessionStorage.RemoveItemAsync("toast");
+        }
+
+    }
+}

@@ -1,0 +1,62 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33122.133
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Receipt", "Receipt\Receipt.csproj", "{3F32C637-782F-44B6-BA62-0E1D76D53CD9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DbAccess", "DataAccess\DbAccess.csproj", "{688334D3-751F-4B4F-8D6F-3658AB0BB4B6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{42C09402-FE92-462E-B8BC-67D37F7D7AF8}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp", "ConsoleApp\ConsoleApp.csproj", "{073D3966-6184-494E-B0A3-17452BE329F4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiClient", "ApiClient\ApiClient.csproj", "{E54BCE48-7D2B-455D-A76F-5E1715836F70}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\DataModel.csproj", "{F09D6AED-C01A-4E0B-BFB0-BD6F871509D4}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{4CA7E147-1453-4823-916C-44438BF81861}"
+	ProjectSection(SolutionItems) = preProject
+		jojomobil.png = jojomobil.png
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3F32C637-782F-44B6-BA62-0E1D76D53CD9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3F32C637-782F-44B6-BA62-0E1D76D53CD9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3F32C637-782F-44B6-BA62-0E1D76D53CD9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3F32C637-782F-44B6-BA62-0E1D76D53CD9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{688334D3-751F-4B4F-8D6F-3658AB0BB4B6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{688334D3-751F-4B4F-8D6F-3658AB0BB4B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{688334D3-751F-4B4F-8D6F-3658AB0BB4B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{688334D3-751F-4B4F-8D6F-3658AB0BB4B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{073D3966-6184-494E-B0A3-17452BE329F4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{073D3966-6184-494E-B0A3-17452BE329F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{073D3966-6184-494E-B0A3-17452BE329F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{073D3966-6184-494E-B0A3-17452BE329F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E54BCE48-7D2B-455D-A76F-5E1715836F70}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E54BCE48-7D2B-455D-A76F-5E1715836F70}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E54BCE48-7D2B-455D-A76F-5E1715836F70}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E54BCE48-7D2B-455D-A76F-5E1715836F70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F09D6AED-C01A-4E0B-BFB0-BD6F871509D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F09D6AED-C01A-4E0B-BFB0-BD6F871509D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F09D6AED-C01A-4E0B-BFB0-BD6F871509D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F09D6AED-C01A-4E0B-BFB0-BD6F871509D4}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{4CA7E147-1453-4823-916C-44438BF81861} = {42C09402-FE92-462E-B8BC-67D37F7D7AF8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A2A0543D-D9EB-44CF-83EE-0B5AC12824C2}
+	EndGlobalSection
+EndGlobal

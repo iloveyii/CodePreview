@@ -1,0 +1,7 @@
+name: Repair Module
+type: module
+version: v3.0
+description: Provides reparing services
+package: My Custom Modules
+core: "8.x"
+core_version_requirement: ^8 || ^9

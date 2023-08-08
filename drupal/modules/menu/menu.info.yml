@@ -1,0 +1,6 @@
+name: Bootstrap 5 menu
+type: module
+version: v2.0
+description: Twitter bootstrap 5 multilevel menu using css
+package: 'Custom'
+core_version_requirement: ^8.8 || ^9

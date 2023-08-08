@@ -1,0 +1,71 @@
+<div class="mat-elevation-z8">
+  <mat-form-field appearance="standard" class="full-width-table">
+    <mat-label>Filter</mat-label>
+    <input matInput (keyup)="applyFilter($event)" name="order_filter"
+      placeholder="Filter on: First Name, Address, Phone, Total Price " #input />
+  </mat-form-field>
+  <table mat-table class="full-width-table" matSort aria-label="Elements" multiTemplateDataRows>
+    <!-- customerFirstName Column -->
+    <ng-container matColumnDef="customerFirstName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+      <td mat-cell *matCellDef="let row">{{row.customerFirstName}}</td>
+    </ng-container>
+
+    <!-- customerAddress Column -->
+    <ng-container matColumnDef="customerAddress">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Address</th>
+      <td mat-cell *matCellDef="let row">{{row.customerAddress}}</td>
+    </ng-container>
+
+    <!-- customerPhone Column -->
+    <ng-container matColumnDef="customerPhone">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Phone</th>
+      <td mat-cell *matCellDef="let row">{{row.customerPhone}}</td>
+    </ng-container>
+
+    <!-- createdAt Column -->
+    <ng-container matColumnDef="createdAt">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Created</th>
+      <td mat-cell *matCellDef="let row">{{row.createdAt}}</td>
+    </ng-container>
+
+    <!-- totalPrice Column -->
+    <ng-container matColumnDef="totalPrice">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Total Price</th>
+      <td mat-cell *matCellDef="let row">{{row.totalPrice}}</td>
+    </ng-container>
+
+    <!-- orderStatus Column -->
+    <ng-container matColumnDef="orderStatus">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+      <td mat-cell *matCellDef="let row">{{row.orderStatusLabel}}</td>
+    </ng-container>
+
+    <!-- action Column -->
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Action</th>
+      <td mat-cell *matCellDef="let element">
+        <ng-container>
+          <div *ngIf="element.orderStatus == 1; then thenBlock; else elseBlock"></div>
+          <ng-template #thenBlock>
+            <button mat-button color="warn" (click)="changeOrderStatus(element, STATUS.SHIPPED)">
+              Ship
+            </button>
+          </ng-template>
+          <ng-template #elseBlock>
+            <button mat-button color="warn" (click)="changeOrderStatus(element, STATUS.ORDERED)">
+              Order
+            </button>
+          </ng-template>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+  </table>
+
+  <mat-paginator #paginator [length]="dataSource?.data?.length" [pageIndex]="0" [pageSize]="10"
+    [pageSizeOptions]="[5, 10, 20]" aria-label="Select page">
+  </mat-paginator>
+</div>

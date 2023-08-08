@@ -1,0 +1,87 @@
+﻿@page "/expenses"
+@attribute [Authorize(Roles = "User")]
+@using Accounting.Client.Components;
+@using Accounting.Client.Components.Expenses
+@inject HttpClient Http
+@using Accounting.Shared
+@using Accounting.Client.Services
+@inject IDataService dataService
+@inject AuthenticationStateProvider authStateProvider
+@using Accounting.Client.Authentication
+@inject NavigationManager navManager
+
+
+
+<h3>Expenses</h3>
+<div class="row">
+    <div class="col-lg-8 mt-3">
+        <ExpenseTable OnOpenDeleteDialog="@OpenDeleteDialog" expenses="@expenses"></ExpenseTable>
+    </div>
+
+    <div class="col-lg-4 mt-3">
+        <ExpenseForm OnSubmitCallback="@Refresh"></ExpenseForm>
+    </div>
+
+    <div>&nbsp;</div>
+    @if (DeleteDialogOpen)
+    {
+        <ModalDialog Title="Are you sure?"
+                     Text="Do you want to delete this expense?"
+                     OnClose="@OnDeleteDialogClose"
+                     DialogType="ModalDialog.ModalDialogType.DeleteCancel">
+        </ModalDialog>
+    }
+</div>
+
+
+
+@code {
+    private Expense[] expenses;
+    private Expense expenseToDelete;
+    public bool DeleteDialogOpen { get; set; }
+
+    protected async override Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task OpenDeleteDialog(Expense expense)
+    {
+        DeleteDialogOpen = true;
+        expenseToDelete = expense;
+        StateHasChanged();
+    }
+
+    private async Task OnDeleteDialogClose(bool confirmed)
+    {
+        if (confirmed)
+        {
+            await dataService.DeleteExpense(expenseToDelete.Id);
+            await LoadData();
+            expenseToDelete = null;
+        }
+        DeleteDialogOpen = false;
+        StateHasChanged();
+    }
+
+    private async Task LoadData()
+    {
+        var hasAccess = await Helper.UserLoggedIn(authStateProvider);
+        if (hasAccess)
+        {
+            expenses = await dataService.LoadExpenses();
+            StateHasChanged();
+        }
+        else
+        {
+            navManager.NavigateTo("/login");
+        }
+
+    }
+
+    public async void Refresh()
+    {
+        await LoadData();
+    }
+
+}

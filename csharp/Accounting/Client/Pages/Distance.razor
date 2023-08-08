@@ -1,0 +1,53 @@
+﻿@page "/distance"
+@using Accounting.Client.Components
+@using Accounting.Shared
+@using Accounting.Client.Services
+@inject CustomerService customerService
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navManager
+
+<h3>Distance calculator</h3>
+
+<div class="rz-p-12 rz-text-align-center">
+    <RadzenAutoComplete Placeholder="Enter origin" @bind-Value=@origin Data=@customers TextProperty="Name" LoadData=@OnLoadData Style="width: 13rem" />
+    <RadzenText TextStyle="TextStyle.Body2">
+        Start typing e.g. France
+        @((MarkupString)(!string.IsNullOrEmpty(origin) ? $", Value is: <strong>{origin}</strong>" : ""))
+    </RadzenText>
+</div>
+
+<div class="rz-p-12 rz-text-align-center">
+    <RadzenAutoComplete Placeholder="Enter destination" @bind-Value=@destination Data=@customers TextProperty="Name" LoadData=@OnLoadData Style="width: 13rem" />
+    <RadzenText TextStyle="TextStyle.Body2">
+        Start typing e.g. France
+        @((MarkupString)(!string.IsNullOrEmpty(destination) ? $", Value is: <strong>{destination}</strong>" : ""))
+    </RadzenText>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <input id="autocomplete_search" name="autocomplete_search" type="text" class="form-control" placeholder="Search" />
+        <input type="hidden" name="lat">
+        <input type="hidden" name="long">
+
+    </div>
+</div>
+
+@code {
+
+    string origin = string.Empty;
+    string destination = string.Empty;
+
+
+    IEnumerable<Customer> customers = new List<Customer>();
+
+    async Task OnLoadData(LoadDataArgs args)
+    {
+        var list = await customerService.LoadCustomers();
+        customers =
+            list
+            .Where(c => c.Name.ToLower().Contains(args.Filter.ToLower()))
+            .OrderBy(c => c.Name)
+        ;
+    }
+}

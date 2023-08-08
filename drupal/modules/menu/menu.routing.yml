@@ -1,0 +1,18 @@
+menu.links:
+  path: '/menu/links'
+  defaults:
+    _controller: '\Drupal\menu\Controller\MenuController::index'
+    _title: 'Menu controller for computational methods'
+  requirements:
+    _permission: 'access content'
+
+menu.dynamic_routes:
+  path: '/menyn'
+  defaults:
+    _title: 'Dynamic routes'
+    _controller: '\Drupal\menu\Controller\DynamicRoutesController::index'
+  requirements:
+    _permission: 'access content'
+
+route_callbacks:
+  - '\Drupal\menu\Routing\ChallengeRoutes::routes'

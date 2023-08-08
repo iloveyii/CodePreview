@@ -1,0 +1,26 @@
+ul.toc {
+    padding-left: 1rem;
+    padding-right: 1rem;
+    background-color: #19875426;
+    border-top: 2px solid #13795b;
+    border-bottom-left-radius: 3px;
+    border-bottom-right-radius: 3px;
+
+    li:first-child {
+        margin-top: 2rem;
+    }
+    li:last-child{
+        margin-bottom: 2rem;
+    }
+    li {
+        background-color: transparent;
+        a {
+            scroll-margin-top: 50px;
+            text-decoration: none;
+            font-size: 1.15rem;
+            color: #084298;
+            background-color: transparent;
+            line-height: 1;
+        }
+    }
+}

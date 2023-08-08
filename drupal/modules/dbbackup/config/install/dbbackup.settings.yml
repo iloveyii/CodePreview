@@ -1,0 +1,5 @@
+allowed_types:
+  - application_form
+  - application_review
+sleep_time:
+  - 10

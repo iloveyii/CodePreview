@@ -1,0 +1,6 @@
+version.admin_settings:
+  title: 'Version Settings'
+  description: 'Configure the version for your applicationi'
+  route_name: version.admin_settings
+  parent: system.admin_config_development
+  weight: 10

@@ -1,0 +1,48 @@
+{# <!-- Repair --> #}
+<div class="mt-5 repair">
+  <div class="container">
+    {{ h1|raw }}
+    {{ h2|raw }}
+    <div class="row justify-content-center mt-3 mt-xl-5">
+      {% for device in list_devices %}
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-2">
+          <a href="/repairing/vendors/{{ device.tid }}">
+            <div class="card mb-3 mb-lg-4 p-1">
+              <div class="card-inner">
+                <img src="{{ device.image_url }}"
+                  class=""
+                  alt="{{ device.name }}" />
+              </div>
+              <div class="card-body text-center">
+                <p class="card-text">
+                  {{ device.name }}
+                </p>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    {# / row #}
+  </div>
+</div>
+
+{% include '@repair/repair/_green_icons.html.twig' with {
+  list_icons: list_icons
+} %}
+{% include '@repair/repair/_features.html.twig' with {
+  list_features: list_features
+} %}
+{% include '@repair/repair/_clients.html.twig' with {
+  list_clients: list_clients
+} %}
+{% include '@repair/repair/_areas.html.twig' with {
+  list_areas: list_areas
+} %}
+
+{% include '@repair/repair/_faq.html.twig' with {
+  list_faq: list_faq,
+  shop_image: shop_image
+} %}
+
+{% include '@repair/vendor/_rating.html.twig' %}

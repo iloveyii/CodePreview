@@ -1,0 +1,28 @@
+<?php
+
+/**
+ * @file
+ * Defines an iframe field with all attributes.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\Core\Url;
+
+
+
+/**
+ * Implements hook_theme().
+ */
+function youtube_theme()
+{
+    return [
+        /* template name "iframe" => templates/iframe.html.twig */
+        'iframe' => [
+            'variables' => [
+                'src' => 'src',
+                'attributes' => [],
+            ],
+            'template' => 'iframe',
+        ],
+    ];
+}

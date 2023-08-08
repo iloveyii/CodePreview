@@ -1,0 +1,10 @@
+services:
+  versions.commands:
+    class: \Drupal\version\Commands\VersionCommand
+    tags:
+      - { name: drush.command }
+    arguments: ['@entity_type.manager', '@logger.factory', '@settings']
+
+  versions.service:
+    class: Drupal\version\Service\VersionService
+    arguments: []

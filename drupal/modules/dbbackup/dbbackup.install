@@ -1,0 +1,12 @@
+<?php
+
+function adbbackup_schema()
+{
+
+    $commands = [
+        'apt update',
+        'apt install'
+    ];
+
+    return null;
+}

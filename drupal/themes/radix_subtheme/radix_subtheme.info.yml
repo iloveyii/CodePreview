@@ -1,0 +1,40 @@
+name: Radix Subtheme
+description: A theme based on Radix.
+screenshot: screenshot.png
+core_version_requirement: ^8.7.7 || ^9.0
+# version: VERSION
+engine: twig
+type: theme
+base theme: radix
+
+regions:
+  primary_menu: Primary Menu
+  secondary_menu: Secondary Menu
+
+  content_top: Content Top
+  content_3_4: Content 3 of 4
+  content_1_4: Content 1 of 4
+  content: Content
+  content_left: Content Left
+  content_center: Content Center
+  content_right: Content Right
+  content_bottom: Content Bottom
+
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'
+
+libraries:
+  - radix_subtheme/style
+
+ckeditor_stylesheets:
+  - build/css/main.style.css
+
+components:
+  namespaces:
+    radix_subtheme: src/components
+
+# Information added by Drupal.org packaging script on 2022-04-21
+version: '5.0.0-rc6'
+project: 'radix'
+datestamp: 1650549955

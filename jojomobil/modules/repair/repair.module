@@ -1,0 +1,76 @@
+<?php
+
+use Drupal\Core\Form\FormBuilderInterface;
+use Drupal\repair\Utils\FileHelper;
+
+/**
+ * Implements hooks_theme
+ */
+function repair_theme()
+{
+  return [
+    'repair' => [
+      'variables' => ['h1' => '', 'h2' => '', 'list_devices' => [], 'list_icons' => [], 'list_features' => [], 'list_clients' => [], 'list_areas' => [], 'list_faq' => [], 'shop_image' => ''],
+      'path' => '@repair/repair'
+    ],
+    'vendor' => [
+      'variables' => ['titles' => [], 'list_vendors' => [], 'list_features' => [], 'device_repair_image' => ''],
+      'path' => '@repair/vendor'
+    ],
+    'model' => [
+      'variables' => ['title' => '', 'description' => '', 'list_models' => [], 'image_url' => '', 'search_form' => ''],
+      'path' => '@repair/model'
+    ],
+    'service' => [
+      'variables' => ['services_top' => '', 'taxo' => [], 'list_services' => [], 'list_sdo' => [], 'services' => [], 'service_delivery_options' => [], 'button_progress' => ''],
+      'path' => '@repair/service'
+    ],
+    'services' => [
+      'variables' => ['title' => '', 'subtitle' => '', 'list_services' => [], 'error' => '', 'default_value' => ''],
+      'path' => '@repair/services'
+    ],
+    'service_delivery_options' => [
+      'variables' => ['title' => '', 'subtitle' => '', 'list_sdo' => [], 'error' => '', 'default_value' => ''],
+      'path' => '@repair/services'
+    ],
+    'services_top' => [
+      'variables' => ['image_url' => '', 'title' => '', 'description' => ''],
+      'path' => '@repair/services'
+    ],
+    'button_progress' => [
+      'variables' => ['id' => '', 'title' => '', 'center' => ''],
+      'path' => '@repair/components'
+    ],
+    'models_list' => [
+      'variables' => ['id' => '', 'title' => '', 'center' => '', 'list_models' => []],
+      'path' => '@repair/components'
+    ]
+  ];
+}
+
+/**
+ * Implements hook_form_alter
+ *
+ * If you want to change the file name on disk only and not the label on web page
+ * If you want to change both use this in formBuild instead
+ */
+function repair_form_alter_inform_build(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id)
+{
+  $ajax_form_request = \Drupal::request()->query->has(FormBuilderInterface::AJAX_FORM_REQUEST);
+  if ($ajax_form_request) {
+    if (!$form_state->isProcessingInput()) {
+      \Drupal::logger('repair')->notice('first pass');
+    } else {
+      \Drupal::logger('repair')->notice('second pass');
+      $image = $form_state->getValue('images');
+      if (is_array($image) && count($image) > 0) {
+        $id = array_shift($image);
+        FileHelper::rename_file($id, 'newfile.jpg');
+      }
+      $vs = $form_state->getValues();
+    }
+  }
+}
+
+// $request = \Drupal::request();
+// $is_ajax = $request->isXmlHttpRequest();

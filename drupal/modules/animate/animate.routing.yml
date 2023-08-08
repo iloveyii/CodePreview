@@ -1,0 +1,15 @@
+animate.index:
+  path: '/animate/index'
+  defaults:
+    _controller: '\Drupal\animate\Controller\DemoController::index'
+    _title: 'Load missing image src'
+  requirements:
+    _permission: 'access content'
+
+animate.bounce_expand:
+  path: '/animate/bounce-expand'
+  defaults:
+    _controller: '\Drupal\animate\Controller\DemoController::bounceExpand'
+    _title: 'Load missing image src'
+  requirements:
+    _permission: 'access content'

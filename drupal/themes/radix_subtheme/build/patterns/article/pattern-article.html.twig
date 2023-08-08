@@ -1,0 +1,25 @@
+{# Only title means links bookmarked #}
+{% if text is empty %}
+  <a href="#{{ title
+      |render
+      |striptags
+      |trim
+      |replace({
+        ' ': '-',
+        '.': ''
+      })
+      |lower }}">
+    {{ title }}
+  </a>
+{% else %}
+  {# Full title #}
+
+  <div class="article">
+    <h2 class="title">
+      {{ title }}
+    </h2>
+    <div class="text">
+      {{ text }}
+    </div>
+  </div>
+{% endif %}

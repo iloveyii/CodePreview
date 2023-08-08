@@ -1,0 +1,17 @@
+<div class="container-fluid g-0">
+  <div class="repair">
+    <div class="row justify-content-center features mt-5">
+      {% for feature in list_features %}
+        <div class="col-xs-6 col-sm-6 col-md-3">
+          <i class="{{ feature.icon }}"></i>
+          <h2 class="display-6">
+            {{ feature.title }}
+          </h2>
+          <p class="text-center">
+            {{ feature.description|raw }}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

@@ -1,0 +1,151 @@
+{#
+/**
+ * @file
+ * Template for a Nav component.
+ *
+ * Available config:
+ * - items: An array of menu links.
+ */
+#}
+{% import '@menu/menulinks.twig' as menus %}
+{# Get menu tree #}
+{% set tree = items.menu_tree %}
+
+<nav class="navbar navbar-expand-lg fixed-top1 navbar-dark bg-menu"
+  aria-label="Main navigation">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="/"></a>
+
+    <button class="navbar-toggler p-0 border-0"
+      type="button"
+      id="navbarSideCollapse"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <button class="navbar-toggler p-0 border-0"
+        type="button"
+        id="navbarCollapseClose"
+        aria-label="Toggle navigation">
+        <i></i>
+      </button>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 list-group list-group-horizontal">
+        {% for menu_item in tree %}
+          {# CASE : 1 #}
+          {% if menu_item.submenu == false %}
+            <li class="nav-item">
+              <a class="nav-link px-md-3 px-sm-5" href="{{ menu_item.url }}">
+                {{ menu_item.text }}
+              </a>
+            </li>
+          {% endif %}
+
+          {# CASE : 2 #}
+          {% if menu_item.submenu == true %}
+            <li class="nav-item dropdown">
+              <a class="nav-link px-md-3 px-sm-5 dropdown-toggler"
+                role="button"
+                href="{{ menu_item.url }}"
+                aria-expanded="false">
+                {{ menu_item.text }}
+                <i class="float-end"></i>
+              </a>
+              <ul class="dropdown-menu">
+                {{ menus.menu_links(menu_item.submenu) }}
+              </ul>
+            </li>
+          {% endif %}
+        {% endfor %}
+      </ul>
+      {% if form %}
+        <div class="d-flex d-md-flex d-lg-none d-xl-flex">
+          {{ form }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+{# <nav class="navbar navbar-expand-lg fixed-top1 navbar-dark bg-menu"
+  aria-label="Main navigation">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">CACHE</a>
+    <button class="navbar-toggler p-0 border-0"
+      type="button"
+      id="navbarSideCollapse"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="navbar-collapse offcanvas-collapse" id="navbarsExampleDefault">
+      <button class="navbar-toggler p-0 border-0"
+        type="button"
+        id="navbarCollapseClose"
+        aria-label="Toggle navigation">
+        <i></i>
+      </button>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0 list-group list-group-horizontal">
+        <li class="nav-item"><a class="nav-link" href="/">Nav Item 1</a></li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link 1"
+            href="#"
+            role="button"
+            aria-expanded="false">
+            Nav Item 2
+            <i class="float-end"></i>
+          </a>
+          <ul class="dropdown-menu">
+            <li><a class="nav-link dropdown-item" href="#">Menu Item 1</a></li>
+            <li><a class="nav-link dropdown-item" href="#">Menu Item 2</a></li>
+            <li class="dropdown-submenu">
+              <a class="nav-link dropdown-item 1"
+                href="#"
+                role="button">
+                Second Level <i class="float-end"></i>
+              </a>
+              <ul class="dropdown-menu">
+                <li>
+                  <a class="nav-link dropdown-item" href="/">
+                    Second Level Item 1
+                  </a>
+                </li>
+                <li>
+                  <a class="nav-link dropdown-item" href="/">
+                    Second Level Item 2
+                  </a>
+                </li>
+                <li class="dropdown-submenu">
+                  <a class="nav-link dropdown-item 1" href="#">
+                    Third Level <i class="float-end"></i>
+                  </a>
+                  <ul class="dropdown-menu">
+                    <li>
+                      <a class="nav-link dropdown-item" href="/">
+                        Third Level Item 1
+                      </a>
+                    </li>
+                    <li>
+                      <a class="nav-link dropdown-item" href="/">
+                        Third Level Item 2
+                      </a>
+                    </li>
+                  </ul>
+                </li>
+              </ul>
+            </li>
+          </ul>
+        </li>
+
+        <li class="nav-item"><a class="nav-link" href="/">Nav Item 3</a></li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2"
+          type="search"
+          placeholder="Search"
+          aria-label="Search" />
+        <button class="btn btn-secondary" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav> #}

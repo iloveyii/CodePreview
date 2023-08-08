@@ -1,0 +1,17 @@
+.vs/
+/**/*.db-*
+ConsoleApp/obj/
+ConsoleApp/bin/
+DataAccess/obj/
+DataAccess/bin/
+
+DataModel/bin/
+DataModel/obj/
+
+ApiClient/bin/
+ApiClient/obj/
+
+econtact/obj/
+econtact/bin/
+WebClient/bin/
+WebClient/obj/

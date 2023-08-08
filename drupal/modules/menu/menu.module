@@ -1,0 +1,18 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function menu_theme()
+{
+    return [
+        'main' => [
+            'variables' => ['items' => null, 'form' => null],
+            'path' => '@menu'
+        ],
+        'submenu' => [
+            'variables' => ['items' => null],
+            'path' => '@menu'
+        ],
+    ];
+}

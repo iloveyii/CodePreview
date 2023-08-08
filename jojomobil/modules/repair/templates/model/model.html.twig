@@ -1,0 +1,35 @@
+{# <!-- Products Page --> #}
+<div class="mt-5 product">
+  {# <!-- Top --> #}
+  <div class="container">
+    <div class="row">
+      <div class="col-md-7">
+        <div class="left">
+          {{ description }}
+          <a href="#quote-start"
+            class="btn btn-outline-success px-3 px-xl-5 py-3 mt-3 mt-xl-5">
+            Få en kostnadsfri offert <i class="bi bi-arrow-down-circle-fill"></i>
+          </a>
+        </div>
+      </div>
+      <div class="col-md-5">
+        <div class="right">
+          <img class="w-100" src="{{ image_url }}" alt="iphone repaired" />
+        </div>
+      </div>
+    </div>
+  </div>
+
+  {# <!-- bottom: Select product model --> #}
+  <div class="mt-5 product" id>
+    <a class="anchor" id="quote-start"></a>
+    <div class="container g-0">
+      <div class="repair">
+        <div class="justify-content-center mt-5 mt-xl-5">
+          {{ attach_library('repair/repair.search.clear') }}
+          {{ search_form }}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

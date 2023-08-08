@@ -1,0 +1,63 @@
+﻿@using Accounting.Client.Components
+@using System.Globalization
+@using Accounting.Shared
+@using Accounting.Client.Pages
+@inject HttpClient Http
+
+<div id="expensesTable" class="card">
+    <div class="card-header">
+        Expenses
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Category</th>
+                        <th>Subject</th>
+                        <th>Amount</th>
+                        <th>&nbsp;</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @if (expenses == null)
+                    {
+                        <tr><td><em>Loading...</em></td></tr>
+                    }
+                    else
+                    {
+                        @foreach (var expense in expenses)
+                        {
+                            <tr>
+                                <td>@expense.Date</td>
+                                <td>@expense.Category</td>
+                                <td>@expense.Subject</td>
+                                <td>@expense.Amount.ToString("C2", CultureInfo.CreateSpecificCulture("en-US"))</td>
+                                <td><button type="button" class="btn btn-danger btn-sm" @onclick="()=>OpenDeleteDialog(expense)">Delete</button></td>
+                            </tr>
+                        }
+                    }
+                </tbody>
+            </table>
+
+        </div>
+    </div>
+</div>
+
+
+
+@code {
+
+    [Parameter]
+    public Expense[] expenses { get; set; }
+    [Parameter]
+    public EventCallback<Expense> OnOpenDeleteDialog { get; set; }
+
+    private void OpenDeleteDialog(Expense expense)
+    {
+        OnOpenDeleteDialog.InvokeAsync(expense);
+    }
+
+
+}

@@ -1,0 +1,84 @@
+# CONTROLLERS
+
+repair.repairing:
+  path: "/repairing"
+  defaults:
+    _controller: 'Drupal\repair\Controller\RepairController::repair'
+    _title: "Repair devices"
+    _description: "Shows a list of devices(mobile, tablet etc) for which we provide services"
+  # methods: [GET]
+  requirements:
+    _access: "TRUE"
+
+repair.vendor:
+  path: "/repairing/vendors/{device_id}"
+  defaults:
+    _controller: 'Drupal\repair\Controller\VendorController::vendors'
+    _title: "Vendors for a device"
+    _description: "Shows a list vendors(apple, samsung) for a specific device_id"
+  methods: [GET]
+  requirements:
+    _access: "TRUE"
+    device_id: ^\w+$
+
+repair.model:
+  path: "/repairing/models/{vendor_id}"
+  defaults:
+    _controller: 'Drupal\repair\Controller\ModelController::models'
+    _title: "Models for a vendor"
+    _description: "Shows a list of models (iphone 14, iphone 13 etc) for a specific vendor_id"
+  # methods: [GET]
+  requirements:
+    _access: "TRUE"
+    vendor_id: ^\w+$
+
+repair.service:
+  path: "/repairing/servicesc/{model_id}"
+  defaults:
+    _controller: 'Drupal\repair\Controller\ServiceController::services'
+    _title: "Services for a model"
+    _description: "Shows a list of services (broken screen, battery down etc) for a specific model_id"
+  methods: [GET]
+  requirements:
+    _access: "TRUE"
+    model_id: ^\w+$
+
+repair.searching.autocomplete:
+  path: "/repairing/searching/autocomplete/{id}"
+  defaults:
+    _controller: 'Drupal\repair\Controller\ModelController::autocomplete'
+    _title: "Search autocomplete"
+    _description: "Shows a list of models for a specific device -> vendor -> models"
+  # methods: [GET]
+  requirements:
+    _access: "TRUE"
+    id: ^\w+$
+
+# FORMS
+
+repair.service_form:
+  path: "/repairing/services/{model_id}"
+  defaults:
+    _title: "Service"
+    _form: 'Drupal\repair\Form\ServiceForm'
+  requirements:
+    _permission: "access content"
+    model_id: ^\w+$
+
+repair.searching_form:
+  path: "/repairing/searching/{id}"
+  defaults:
+    _title: "Search"
+    _form: 'Drupal\repair\Form\SearchForm'
+  requirements:
+    _permission: "access content"
+    id: ^\w+$
+
+repair.general_form:
+  path: "/repairing/general/{model_id}"
+  defaults:
+    _title: "General form"
+    _form: 'Drupal\repair\Form\GeneralForm'
+  requirements:
+    _permission: "access content"
+    model_id: ^\w+$

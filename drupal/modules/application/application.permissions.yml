@@ -1,0 +1,13 @@
+view application:
+  title: 'View application form'
+  description: 'View and submit application form'
+access application list:
+  title: 'Access list of applications'
+  description: 'View the list of applications submitted'
+administer application:
+  title: 'Administer application settings'
+  description: 'Access the administrative settings page of application'
+  restrict access: true
+view application report:
+  title: 'View Application Reports'
+  description: 'View the reports listing'

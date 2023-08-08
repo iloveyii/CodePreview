@@ -1,0 +1,19 @@
+{
+    "name": "ali/dbbackup",
+    "description": "Drupal take & restoring database backups",
+    "type": "module",
+    "autoload": {
+        "psr-4": {
+            "Ali\\Dbbackup\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Hazrat Ali",
+            "email": "iloveyii@yahoo.com"
+        }
+    ],
+    "require": {
+        "mikehaertl/php-shellcommand": "^1.6"
+    }
+}

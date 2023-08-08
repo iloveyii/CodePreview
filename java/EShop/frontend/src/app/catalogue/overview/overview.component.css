@@ -1,0 +1,32 @@
+.catalogue-wrapper {
+  margin: 1em;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 1em;
+  justify-content: space-around;
+}
+
+.catalogue-wrapper > mat-card {
+  margin: 1em;
+}
+
+.items-header-image {
+  background-image: url('https://tse3.mm.bing.net/th?id=OIP.8eQqylJqbPlO_qdBfSf5KQHaHa&w=690&c=7&pid=Api&p=0');
+  background-size: cover;
+}
+
+.img-wrapper {
+  width: 100%;
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+}
+
+.img-wrapper > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

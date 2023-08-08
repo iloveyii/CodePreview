@@ -1,0 +1,36 @@
+## File: THEME/patterns/color_box/color-box.patterns.yml
+color_box:
+  label: 'Color Box'
+  description: A colorful message box for alerting
+  variants: 
+    success: 
+      label: Success
+      description: Success layout
+    info: 
+      label: Info
+      description: Info layout
+    warn: 
+      label: Warn
+      description: Warn layout
+    danger: 
+      label: Danger
+      description: Danger layout
+  fields:
+    title:
+      type: text
+      label: Title
+      description: Title of the item.
+      preview: 'FLASH SALE'
+    text:
+      type: text
+      label: Text
+      description: A short sentence.
+      preview: '20% Off Everything in your Cart!'
+     
+
+  libraries:
+    -
+      color_box:
+        css:
+          component:
+            css/color_box.css: {}

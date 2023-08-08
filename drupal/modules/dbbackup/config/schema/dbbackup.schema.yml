@@ -1,0 +1,13 @@
+dbbackup.settings:
+  type: config_object
+  label: 'Database Backup Settings'
+  mapping:
+    allowed_types:
+      type: sequence
+      label: 'Content Types, dbbackup Form can display on'
+      sequence:
+        type: string
+        label: 'Content Types'
+    sleep_time:
+      type: string
+      label: 'Waiting time for db preparation (s)'

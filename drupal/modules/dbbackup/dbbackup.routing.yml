@@ -1,0 +1,31 @@
+dbbackup.admin_settings:
+  path: '/admin/config/content/dbbackup'
+  defaults:
+    _form: '\Drupal\dbbackup\Form\SettingsForm'
+    _title: 'DbBackup Settings'
+  requirements:
+    _permission: 'administer dbbackup'
+
+dbbackup.download.socat:
+  path: '/download/socat'
+  defaults:
+    _controller: '\Drupal\dbbackup\Controller\DownloadController::socat'
+    _title: 'Download socat files'
+  requirements:
+    _permission: 'view application'
+
+dbbackup.download.dump:
+  path: '/download/dump'
+  defaults:
+    _controller: '\Drupal\dbbackup\Controller\DownloadController::dump'
+    _title: 'Download dump files'
+  requirements:
+    _permission: 'view application'
+
+dbbackup.download.docker:
+  path: '/download/docker'
+  defaults:
+    _controller: '\Drupal\dbbackup\Controller\DownloadController::docker'
+    _title: 'Download docker files'
+  requirements:
+    _permission: 'view application'

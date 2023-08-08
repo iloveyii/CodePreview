@@ -1,0 +1,87 @@
+﻿@using Radzen.Blazor
+@using Radzen
+@using Microsoft.JSInterop
+@inject IJSRuntime js
+@inject HttpClient httpClient
+@inject IJSRuntime js
+
+
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <SurveyPrompt Title="How does it work?" />
+        </div>
+    </div>
+
+    <div class="file-drop-zone">
+
+        <div class="row">
+            <div class="col-md-12">
+                <label class="label-default @labelClass" for="uploading-files">
+                    <img class="files-img" src="img/files.svg" />
+                    <InputFile id="uploading-files" multiple OnChange="@OnChange" />
+                    <RadzenSplitButton Click=@(args => OnRadzenSplitButtonClick(args)) Icon="description" Text="Choose files" Size="ButtonSize.Large">
+                        <ChildContent>
+                            <RadzenSplitButtonItem Text="Item1" Value="1" Icon="account_box" />
+                            <RadzenSplitButtonItem Text="Item2" Value="2" Icon="account_balance_wallet" />
+                        </ChildContent>
+                    </RadzenSplitButton>
+                </label>
+            </div>
+
+            @if (labelClass != "d-visible")
+            {
+                <div class="col-md-12">
+                    <div class="card text-center mt-5">
+                        <div class="card-body p-5">
+
+                            <div class="image-list mt-3">
+                                @foreach (var (index, uploadingFile) in loadedFiles.Select((value, i) => (i, value)))
+                                {
+                                    <div class="card" style="background-image: url(@uploadingFile.ImageSource)">
+                                        <button @onclick="@(() => RemoveImage(index))" type="button" class="btn-close" aria-label="Close"></button>
+
+                                        <div class="progressbar">
+                                            <div class="filename" id="@uploadingFile.File.Name">@uploadingFile.File.Name</div>
+                                            <div class="percentage">
+                                                @(uploadingFile.Uploaded / 1024)KB / @(uploadingFile.Percentage)%
+                                                <progress value="@uploadingFile.Percentage" max="100"></progress>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                        <div class="card-footer text-muted d-flex justify-content-between">
+                            <div class="d-flex">
+                                <button @onclick="@(() => OnRadzenSplitButtonClick(null))" class="btn btn-outline-default text-uppercase btn-plus"> <span class="oi oi-plus fs-3"></span>   Add more</button>
+                            </div>
+                            @if (uploadingInProgress)
+                            {
+                                <button disabled class="btn btn-outline-primary text-uppercase" @onclick="StartUpload"> <span class="oi oi-reload"></span>  Upload files</button>
+                            }
+                            else
+                            {
+                                <button class="btn btn-outline-primary text-uppercase" @onclick="StartUpload"> <span class="oi oi-cloud-upload"></span>  Upload files</button>
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+
+            
+        </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+    
+
+    

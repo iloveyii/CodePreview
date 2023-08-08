@@ -1,0 +1,11 @@
+name: Database Backup
+description: Backup database or selecte content types
+package: My Custom Modules
+type: module
+version: 1.0
+core: "8.x"
+core_version_requirement: ^8 || ^9
+configure: dbbackup.admin_settings
+# testing git
+dependencies:
+  - drupal:serialization

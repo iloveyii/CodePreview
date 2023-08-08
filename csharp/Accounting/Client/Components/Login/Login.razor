@@ -1,0 +1,58 @@
+﻿@page "/login"
+@using Accounting.Shared
+@using Accounting.Client.Authentication
+@using Blazored.Toast
+@using Blazored.Toast.Services
+@using Microsoft.AspNetCore.Components.Authorization;
+@inject HttpClient httpClient
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navManager
+@inject IJSRuntime js
+@inject IToastService toastService
+
+
+<div class="row mt-5">
+    <div class="col-lg-4 offset-lg-4 pt-3 border d-grid gap-2 col-md-6 offset-md-3">
+        <div class="mb-3 text-center">
+            <h3>Login</h3>
+        </div>
+
+        <div class="mb-3">
+            <label>User Name</label>
+            <input @bind="loginRequest.UserName" class="form-control" placeholder="User Name: admin, user" />
+        </div>
+        <div class="mb-3">
+            <label>Password</label>
+            <input @bind="loginRequest.Password" type="password" class="form-control" placeholder="Password: admin, user" />
+        </div>
+        <div class="mb-3 pb-3 d-grid gap-2">
+            <button class="btn btn-primary" @onclick="Authenticate">Login</button>
+        </div>
+
+    </div>
+</div>
+
+@code {
+    private LoginRequest loginRequest = new LoginRequest();
+
+    private async Task Authenticate()
+    {
+        var loginResponse = await httpClient.PostAsJsonAsync<LoginRequest>("/api/Account/Login", loginRequest);
+
+        if(loginResponse.IsSuccessStatusCode)
+        {
+            var userSession = await loginResponse.Content.ReadFromJsonAsync<UserSession>();
+            var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
+            await customAuthStateProvider.UpdateAuthenticationState(userSession);
+            toastService.ShowInfo("User logged in");
+            toastService.ShowInfo("Redirecting...");
+            navManager.NavigateTo("/", true);
+        } else if (loginResponse.StatusCode == System.Net.HttpStatusCode.Unauthorized)
+        {
+            toastService.ShowError("Invalid User Name or Password");
+            // await js.InvokeVoidAsync("alert", "Invalid User Name or Password");
+            return;
+        }
+    }
+
+}

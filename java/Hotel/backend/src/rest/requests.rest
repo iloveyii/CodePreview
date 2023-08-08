@@ -1,0 +1,152 @@
+
+### Authenticate
+
+POST http://localhost:8090/api/v1/logins
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "ali@yahoo.com",
+  "password": "password"
+}
+
+
+
+
+##############################################
+      04 Entities : User, Room, Customer, Booking
+##############################################
+
+### User post
+
+POST http://localhost:8090/api/v1/users
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb290IiwiZXhwIjoxNjE1NzQ5MjE2LCJpYXQiOjE2MTU3MzEyMTZ9.nvrTFKISS3jvZEumIpjMNzSGAPLbAqN_rvM8EY_C4CPtiahaNEVCGu8VSU3oTP4ipKcK7wlBmFdi-wpukSdd9w
+Content-Type: application/json
+
+{
+  "name": "ali",
+  "email": "ali@yahoo.com",
+  "password": "password"
+}
+
+
+### User get
+
+GET http://localhost:8090/api/v1/users
+Accept: application/json
+Content-Type: application/json
+
+### User delete
+
+DELETE http://localhost:8090/api/v1/users/10
+Accept: application/json
+Content-Type: application/json
+
+### User update
+
+PUT http://localhost:8090/api/v1/users/10
+Accept: application/json
+Content-Type: application/json
+
+{
+  "email": "ali@yahoo.com",
+  "password": "password10"
+}
+
+
+
+
+### Room get
+
+GET http://localhost:8090/api/v1/rooms
+Accept: application/json
+Content-Type: application/json
+
+
+### Room post
+
+POST http://localhost:8090/api/v1/rooms
+Content-Type: application/json
+
+{
+  "number": "0113",
+  "price": 200.0,
+  "booked": "no"
+}
+
+
+### Customer get
+
+GET http://localhost:8090/api/v1/customers
+Accept: application/json
+Content-Type: application/json
+
+
+### Customer post
+
+POST http://localhost:8090/api/v1/customers
+Authorization: Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJyb290IiwiZXhwIjoxNjE1NzQ5MjE2LCJpYXQiOjE2MTU3MzEyMTZ9.nvrTFKISS3jvZEumIpjMNzSGAPLbAqN_rvM8EY_C4CPtiahaNEVCGu8VSU3oTP4ipKcK7wlBmFdi-wpukSdd9w
+Content-Type: application/json
+
+{
+  "name": "j name",
+  "email": "j@d.com",
+  "phone": "123-456-789"
+}
+
+
+
+### Customer delete
+
+DELETE http://localhost:8090/api/v1/customers/10
+Accept: application/json
+Content-Type: application/json
+
+
+##########
+BOOKING
+##########
+
+### Booking get
+
+GET http://localhost:8090/api/v1/bookings
+Accept: application/json
+Content-Type: application/json
+
+### Booking delete
+
+DELETE http://localhost:8090/api/v1/bookings/2
+Accept: application/json
+Content-Type: application/json
+
+### Booking create
+
+POST http://localhost:8090/api/v1/bookings
+Accept: application/json
+Content-Type: application/json
+
+{
+  "room_number": "111",
+  "price": 123.9,
+  "name": "alex",
+  "phone": "111-222-333",
+  "email": "alex@mail.com",
+  "datetime": "2021-05-99 12:13:38 CEST"
+}
+
+
+### Booking update
+
+PUT http://localhost:8090/api/v1/bookings/1
+Accept: application/json
+Content-Type: application/json
+
+{
+  "room_id": 1,
+  "customer_id": 1,
+  "amount": 200,
+  "datetime": "2021-05-99 12:13:38 CEST"
+}
+
+
+

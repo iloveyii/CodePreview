@@ -1,0 +1,82 @@
+<mat-toolbar>
+  <mat-toolbar-row>
+    <button mat-button [matMenuTriggerFor]="searchmenu">
+      <mat-icon>search_function</mat-icon>
+    </button>
+    <a mat-button routerLink="/catalogue">Clear Filter</a>
+    <mat-menu #searchmenu="matMenu" class="searchmenu">
+      <mat-label class="filter_title">Filter by :</mat-label>
+      <br>
+      <br>
+      <mat-form-field appearance="fill" class="name_field">
+        <mat-label>Name :</mat-label>
+        <input matInput placeholder="Ex. T-shirt Nike" (click)="$event.stopPropagation()"
+               name="search_bar"
+               autocomplete="one-time-code" #searchField>
+      </mat-form-field>
+      <mat-form-field appearance="fill" class="categories_field">
+        <mat-label>By Categories :</mat-label>
+        <select matNativeControl required (click)="$event.stopPropagation()" disabled>
+          <option value="electronics">Electronics</option>
+          <option value="clothing">Clothing</option>
+          <option value="food">Food</option>
+          <option value="games">Games</option>
+        </select>
+      </mat-form-field>
+      <div class="price_div">
+        <label class="price">Max Price :</label>
+      </div>
+      <mat-slider
+        class='price_slider'
+        thumbLabel
+        tickInterval="50"
+        step="5"
+        min="0"
+        max="500"
+        value="500"
+        aria-label="units" (click)="$event.stopPropagation()" #maxPrice></mat-slider>
+      <label id="kronor" class="kronor">$</label>
+      <a routerLink="/catalogue"
+         [queryParams]="{ searchString: searchField.value, maxPrice: maxPrice.value }"
+         mat-menu-item>
+        <mat-icon class="search_icon">search_function</mat-icon>
+        <span>Search</span>
+      </a>
+    </mat-menu>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<div class="catalogue-wrapper" *ngIf="$items | async as items">
+  <ng-container *ngFor="let item of items">
+    <mat-card>
+      <mat-card-header>
+        <div mat-card-avatar class="items-header-image"></div>
+        <mat-card-title>{{item.name}}</mat-card-title>
+        <mat-card-subtitle>{{item.category}}</mat-card-subtitle>
+      </mat-card-header>
+      <div class="img-wrapper">
+        <img mat-card-image [src]="item.image" [alt]="'Photo of ' + item.name">
+      </div>
+      <mat-card-content>
+        <p>
+          {{item.description}}
+        </p>
+        <p *ngIf="item.stock < 10" style="color: red">
+          Only {{item.stock}} left in stock! Buy now!
+        </p>
+        <p style="font-weight: bolder">
+          <span>Price: </span>
+          <span>{{item.price | currency}}</span>
+        </p>
+      </mat-card-content>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="accent" (click)="onAddItemToCart(item)"
+                [disabled]="item.stock < 0 || !notSignedInBool">
+          <mat-icon>add</mat-icon>
+          <span>Add to Cart</span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </ng-container>
+
+</div>

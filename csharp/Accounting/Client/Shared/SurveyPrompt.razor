@@ -1,0 +1,17 @@
+﻿<div class="alert alert-secondary mt-4">
+    <span class="oi oi-pencil me-2" aria-hidden="true"></span>
+    <strong>@Title</strong>
+
+    <span class="text-wrap">
+        Click the <strong>Choose files</strong> button and add as many files as required. Then click the 
+        <strong>UPLOAD FILES</strong> button. You can add more files by clicking 
+        <strong> ADD MORE  </strong> button.
+        You can also <a target="_blank" class="font-weight-bold link-dark" href="/">refresh</a> this page.
+    </span>
+</div>
+
+@code {
+    // Demonstrates how a parent component can supply parameters
+    [Parameter]
+    public string? Title { get; set; }
+}

@@ -1,0 +1,13 @@
+<article class='challenge-node'>
+	<h1>
+		{{ node.title }}
+	</h1>
+
+	{% include '@application/challenge/announcement.html.twig' %}
+	{% include '@application/challenge/statement.html.twig' %}
+
+	{% include '@application/challenge/schedule.html.twig' %}
+
+	{% include '@application/challenge/timeline.html.twig' %}
+	{% include '@application/challenge/details.html.twig' %}
+</article>

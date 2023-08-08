@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google map</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css"
+        integrity="sha512-t4GWSVZO1eC8BM339Xd7Uphw5s17a86tIZIj8qRxhnKub6WoyhnrxeCIMeAqBPgdZGlCcG2PrZjMc+Wr78+5Xg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="row mt-5">
+            <div class="col">
+                <h3>Rent calculator</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <form>
+                    <div class="mb-3">
+                        <label for="origin" class="form-label">Origin - <strong> A </strong> </label>
+                        <input class="form-control" id="origin" placeholder="Enter a place e.g Gillian Lynne"
+                            type="text" />
+                        <div id="emailHelp" class="form-text">This is your starting point</div>
+                    </div>
+                </form>
+                <p id="origin_details"></p>
+            </div>
+
+            <div class="col-md-4 col-sm-6">
+                <form>
+                    <div class="mb-3">
+                        <label for="destination" class="form-label">Destination - <strong> B </strong> </label>
+                        <div class="d-flex">
+                            <input class="form-control" id="destination"
+                                placeholder="Enter a place e.g Moorgate station" type="text" />
+                            <button id="clearInputsButton" class="mx-2 px-3 btn btn-danger btn-sm">x</button>
+                        </div>
+
+                        <div id="emailHelp" class="form-text">This is your ending point</div>
+                    </div>
+                </form>
+                <p id="destination_details"></p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-12">
+                <div id="map" style="height: 500px; width: 100%;"></div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col">
+                <div id="messages"></div>
+            </div>
+        </div>
+
+
+    </div>
+
+    <script>
+        let originAutocomplete;
+        let destinationAutocomplete;
+
+        function initAutocomplete() {
+            // init map
+            initMap();
+            initRoute();
+            // origin
+            originAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('origin'),
+                {
+                    types: ['establishment'],
+                    componentRestrictions: { 'country': ['UK'] },
+                    fields: ['place_id', 'geometry', 'name']
+                }
+            );
+            originAutocomplete.addListener('place_changed', onPlaceChangedOrigin);
+            // destination
+            destinationAutocomplete = new google.maps.places.Autocomplete(
+                document.getElementById('destination'),
+                {
+                    types: ['establishment'],
+                    componentRestrictions: { 'country': ['UK'] },
+                    fields: ['place_id', 'geometry', 'name']
+                }
+            );
+            destinationAutocomplete.addListener('place_changed', onPlaceChangedDestination);
+
+        }
+
+        function onPlaceChangedOrigin() {
+            var place = originAutocomplete.getPlace();
+            console.log(place)
+
+            if (place && place.geometry) {
+                let lat = place.geometry.location.lat()
+                let lng = place.geometry.location.lng()
+                document.getElementById('origin_details').innerHTML = place.name + ', LatLng:' + lat + ", " + lng;
+                document.getElementById('destination').focus()
+                calcRoute()
+            }
+        }
+
+        function onPlaceChangedDestination() {
+            var place = destinationAutocomplete.getPlace();
+
+            if (place && place.geometry) {
+                let lat = place.geometry.location.lat()
+                let lng = place.geometry.location.lng()
+                document.getElementById('destination_details').innerHTML = place.name + ', LatLng:' + lat + ", " + lng;
+                calcRoute()
+            }
+        }
+    </script>
+
+    <script>
+        let map;
+        function initMap() {
+            map = new google.maps.Map(
+                document.getElementById('map'),
+                {
+                    center: { lat: 51.51619, lng: -0.11121 },
+                    zoom: 15
+                }
+            );
+
+            google.maps.event.addListener(map, 'click', function (event) {
+                this.setOptions({ scrollwheel: true })
+            })
+        }
+    </script>
+
+    <script>
+        let originValue
+        let destinationValue
+        let directionService, directionRenderer
+
+        function calcRoute() {
+            directionRenderer.setMap(map)
+            originValue = document.getElementById('origin').value
+            destinationValue = document.getElementById('destination').value
+            console.log(originValue, destinationValue)
+            if (originValue && destinationValue) {
+                let request = {
+                    origin: originValue,
+                    destination: destinationValue,
+                    travelMode: 'DRIVING'
+                };
+
+                directionService.route(request, function (response, status) {
+                    if (status == 'OK') {
+                        directionRenderer.setDirections(response)
+                    }
+                })
+                calculateDistanceInZones()
+            }
+        }
+
+        function initRoute() {
+            directionService = new google.maps.DirectionsService()
+            directionRenderer = new google.maps.DirectionsRenderer()
+            directionRenderer.setMap(map)
+        };
+
+    </script>
+
+    <script>
+        function clearInputs() {
+            document.getElementById('origin').value = ''
+            document.getElementById('destination').value = ''
+        }
+
+        (function () {
+            document.getElementById('clearInputsButton').addEventListener('click', function (e) {
+                e.preventDefault()
+                e.stopPropagation()
+                clearInputs()
+                directionRenderer.set('directions', null)
+                document.getElementById('origin').focus()
+            })
+        })();
+    </script>
+
+    <script>
+        async function calculateDistanceInZones() {
+            console.log('Calling api')
+            let url = 'http://localhost:28091/api/Earnings?';
+            let origin = 'origin=51.51753,-0.18075';
+            let destination = '&destination=51.4914,-0.0525';
+            let fullUrl = url + origin + destination;
+
+            const options = {
+                method: 'GET',
+                headers: {
+                    'Content-Type': '*',
+                },
+                mode: 'no-cors'
+            };
+            onGet(fullUrl)
+        }
+
+        function onGet(url) {
+            var headers = {
+
+            }
+
+            const options = {
+                method: 'GET',
+                headers: new Headers({ 'content-type': 'application/json' }),
+                mode: 'no-cors'
+            };
+
+            fetch(url, options)
+                .then((response) => {
+                    return response;
+                })
+                .then(data => {
+                    console.log('data', data)
+                    ////  document.getElementById('messages').innerHTML = data;
+                })
+              
+                .catch(function (error) {
+                    document.getElementById('messages').innerHTML = error;
+                    console.log('data', error)
+
+                });
+        }
+
+        function loadDoc(url) {
+            const xhttp = new XMLHttpRequest();
+            xhttp.onload = function () { }
+            xhttp.open("GET", url);
+            xhttp.send();
+        }
+
+
+    </script>
+
+
+    <script
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAUlNSN4gw2Ja-Wuaz_EjePLm0z0Nx1tcc&libraries=places&callback=initAutocomplete"
+        defer></script>
+
+</body>
+
+</html>

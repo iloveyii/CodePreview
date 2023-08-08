@@ -1,0 +1,36 @@
+<div class="product">
+  {# <!-- Service option --> #}
+  <div class="row">
+    <div class="col">
+      <h2 class="text-center mt-3 mt-xl-5">
+        Choose a service delivery option.
+      </h2>
+      <small class="text-center d-block">
+        Give us your your choice so we can give you best service.
+      </small>
+    </div>
+  </div>
+  <div class="row repair service-option">
+    <div class="row justify-content-center mt-3 mt-xl-5">
+      {% for sdo in list_sdo %}
+        <div class="col-xs-6 col-sm-6 col-md-4 col-lg-3 col-xl-3">
+          <a class="card-link" href="#">
+            <div class="card mb-3 mb-lg-4 p-1">
+              <div class="card-inner">
+                <img src="{{ sdo.image_url }}" class="" alt="{{ sdo.name }}" />
+              </div>
+              <div class="card-body text-center">
+                <p class="card-text fw-bold display-3">
+                  {{ sdo.name }}
+                </p>
+                <small class="d-block text-center">
+                  {{ sdo.subtitle|raw }}
+                </small>
+              </div>
+            </div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</div>

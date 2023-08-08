@@ -1,0 +1,18 @@
+version: "3.1"
+
+services:
+  accounting_csharp_distance:
+    build: .
+    container_name: accounting_csharp_distance
+    restart: always
+    ports:
+        - 5005:3000 
+    volumes:
+        - ./Data:/Data:rw 
+    environment:
+        DATADIR: "${DATADIR}"
+        TZ: "Europe/Stockholm"
+    networks:
+        - accounting_csharp_distance_network
+networks:
+    accounting_csharp_distance_network:

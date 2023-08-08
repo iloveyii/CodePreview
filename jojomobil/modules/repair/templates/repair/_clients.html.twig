@@ -1,0 +1,54 @@
+<!-- Clients -->
+<div class="container clients mt-3 mt-xl-5">
+  <div class="row">
+    <div class="col">
+      <div class="text-center my-3">
+        <h2 class="font-weight-light">
+          Våra Kunder
+        </h2>
+        <div class="row mx-auto my-auto justify-content-center">
+          <div id="recipeCarousel"
+            class="carousel slide g-0"
+            data-bs-ride="carousel">
+            <div class="carousel-inner" role="listbox">
+              {% for client in list_clients %}
+                <div class="carousel-item {{
+                  loop.index == 1
+                    ? 'active'
+                    : ''
+                  }}">
+                  <div class="col-md-3">
+                    <div class="card">
+                      <div class="card-img">
+                        <img src="{{ client.icon }}" class="img-fluid" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            <a class="carousel-control-prev bg-transparent w-aut"
+              href="#recipeCarousel"
+              role="button"
+              data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true">
+
+              </span>
+            </a>
+            <a class="carousel-control-next bg-transparent w-aut"
+              href="#recipeCarousel"
+              role="button"
+              data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true">
+
+              </span>
+            </a>
+          </div>
+        </div>
+        <h5 class="mt-2 fw-light">
+          100% nöjda kunder
+        </h5>
+      </div>
+    </div>
+  </div>
+</div>

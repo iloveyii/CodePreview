@@ -1,0 +1,35 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function animate_theme()
+{
+    return [
+        'index' => [
+            'variables' => ['items' => null],
+            'path' => '@animate'
+        ],
+        'bounce_expand' => [
+            'variables' => ['items' => null],
+            'path' => '@animate'
+        ],
+        'lineup' => [
+            'variables' => ['items' => null],
+            'path' => '@animate'
+        ],
+        'revealing' => [
+            'variables' => ['showup' => null, 'slidein' => null],
+            'path' => '@animate'
+        ],
+
+        'threed' => [
+            'variables' => ['text' => null, 'size' => null, 'link' => null, 'bg' => null],
+            'path' => '@animate'
+        ],
+        'smoothe' => [
+            'variables' => ['text' => null, 'size' => null, 'link' => null, 'bg' => null],
+            'path' => '@animate'
+        ],
+    ];
+}

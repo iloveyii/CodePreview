@@ -1,0 +1,25 @@
+﻿@page "/logout"
+@inherits LayoutComponentBase
+@using Accounting.Shared
+@using Accounting.Client.Authentication
+@using Microsoft.AspNetCore.Components.Authorization;
+@inject AuthenticationStateProvider authStateProvider
+@inject NavigationManager navManager
+
+
+<h3>Logout...</h3>
+
+@code {
+
+    protected async override Task OnInitializedAsync()
+    {
+        await LogoutNow();
+    }
+
+    private async Task LogoutNow()
+    {
+        var customAuthStateProvider = (CustomAuthenticationStateProvider)authStateProvider;
+        await customAuthStateProvider.UpdateAuthenticationState(null);
+        navManager.NavigateTo("/login", true);
+    }
+}

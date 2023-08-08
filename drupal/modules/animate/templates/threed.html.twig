@@ -1,0 +1,35 @@
+{{ attach_library('animate/threed') }}
+
+{% if text is not empty %}
+  <span>
+    <style>
+      .layer:after { content: "{{ text }}" !important; }
+    </style>
+  </span>
+{% endif %}
+<div class="animate {{ bg }} {{ size }}">
+{% if link is not empty %} <a href="{{ link }}"> {% endif %}
+    <div class="stage">
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+      <div class="layer"></div>
+    </div>
+{% if link is not empty %} </a> {% endif %}
+</div>

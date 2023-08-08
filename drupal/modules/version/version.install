@@ -1,0 +1,38 @@
+<?php
+function version_schema()
+{
+    $schema['version'] = array(
+        'description' => 'Stores version number of the modules or drupal application installed',
+        'fields' => array(
+            'id' => array(
+                'description' => 'Field for record',
+                'type' => 'serial',
+                'unsigned' => TRUE,
+                'not null' => TRUE
+            ),
+            'module' => array(
+                'description' => 'Field for module name',
+                'type' => 'varchar',
+                'length' => 64,
+                'not null' => FALSE,
+                'default' => ''
+            ),
+            'version' => array(
+                'description' => 'Field for version number',
+                'type' => 'varchar',
+                'length' => 64,
+                'default' => 0,
+                'not null' => FALSE
+            ),
+            'created' => array(
+                'description' => 'Field for record',
+                'type' => 'int',
+                'default' => 0,
+                'not null' => TRUE
+            ),
+        ),
+        'primary key' => array('id'),
+    );
+
+    return $schema;
+}

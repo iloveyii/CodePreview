@@ -1,0 +1,16 @@
+services:
+  actioner_events_subscriber:
+    class: '\Drupal\actioner\EventSubscriber\ConfigEventsSubscriber'
+    tags:
+      - { name: 'event_subscriber' }
+
+  actioner_user_login:
+    class: '\Drupal\actioner\EventSubscriber\UserLoginSubscriber'
+    tags:
+      - { name: 'event_subscriber' }
+
+
+  actioner_vbo_event:
+    class: '\Drupal\actioner\EventSubscriber\VboEventSubscriber'
+    tags:
+      - { name: 'event_subscriber' }

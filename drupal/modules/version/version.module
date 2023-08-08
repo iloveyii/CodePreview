@@ -1,0 +1,14 @@
+<?php
+
+/**
+ * Implements hook_theme().
+ */
+function version_theme()
+{
+    return [
+        'version' => [
+            'variables' => ['version' => null, 'font_size' => null],
+            'path' => '@version'
+        ],
+    ];
+}

@@ -1,0 +1,16 @@
+services:
+  service.serialization:
+    class: Drupal\dbbackup\Service\SerializationService
+    arguments: []
+
+  service.backup:
+    class: Drupal\dbbackup\Service\BackupService
+    arguments: []
+
+  service.restore:
+    class: Drupal\dbbackup\Service\RestoreService
+    arguments: []
+
+  ziping.service:
+    class: Drupal\dbbackup\Service\ZipService
+    arguments: []
