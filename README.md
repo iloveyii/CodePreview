@@ -27,4 +27,6 @@
     - ReactJS code snippets
 
 
-
+- maui
+    - Task - A MAUI sample application for planets info 
+    - MauiBreakfast - A sample Breakfast application about breakfast and its ingredients
